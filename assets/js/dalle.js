@@ -8,7 +8,7 @@ reqbut.onclick = function(){
     const prompt = document.getElementById('text-prompt').value;
     var getkey = document.getElementById('api-key').value;
     if (getkey==="friends&fam"){
-        getkey= "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";
+        getkey= "sk-3HASKtZ6BO1eV53ZAynrFnonq7XTuTN0C03ki9t2IkT3BlbkFJZZi6UZx_BsC89vt4_8EY1yTAqr0xpZI9uYSFBLSsUA";
     }
     const imgradios = document.getElementsByName('image-size');
     const googleradios = document.getElementsByName('googlyeyes');
