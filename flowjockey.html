@@ -1,44 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
-
   <title>Canvas drawing</title>
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="DrawingApp\css\styles.css">
+  <link rel="stylesheet" href="DrawingApp/css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .widget-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100vh;
+      padding: 50px;
+    }
+
+    .widget {
+      background-color: #f0f0f0;
+      width: 30%;
+      height: 400px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .widget iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .refresh-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Control the display order */
+    .display-widget {
+      order: 1;
+    }
+
+    .moderate-widget {
+      order: 2;
+    }
+
+    .draw-widget {
+      order: 3;
+    }
+
+    body {
+      background-color: pink;
+    }
+
+  </style>
 </head>
 
-</div>
 <body class="fullcontainer">
-  <div id = "main" class="pinkcontainer">
-  <div>
-    <navbarog class = "navbar-contentsog">
-      <div class = "text-over-image">
-        <a href = "index.html#main">
-            <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
-            <span id = "logo-text" class = "header centered-text">katie <3</span> 
-        </a>
-      </div>
-    </navbarog>
-  </div>
-  <div style="position:absolute; top:50%; left:50%; transform: translate(-50%, -50%); display:flex; flex-direction: column; align-items: center;">
-    <div style="display:flex; flex-direction:row;">
-        <a target="_blank" href="https://draw-flowjockey.glitch.me">
-            <span style="color:white; padding:50px" id="logo-text">draw</span>
-        </a>
-        <a target="_blank" href="https://perform-flowjockey.glitch.me">
-            <span style="color:white;padding:50px" id="logo-text">moderate</span>
-        </a>
-        <a target="_blank" href="https://display-flowjockey.glitch.me">
-            <span style="color:white;padding:50px" id="logo-text">display</span>
-        </a>
+  <div id="main" class="pinkcontainer">
+    <div>
+      <navbarog class="navbar-contentsog">
+        <div class="text-over-image">
+          <a href="index.html#main">
+            <img class="explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
+            <span id="logo-text" class="header centered-text">katie <3</span>
+          </a>
+        </div>
+      </navbarog>
     </div>
-</div>
 
-<script src = "DrawingApp/js/menu.js"></script>
-<script src = "assets/js/girlypop.js"></script>
+    <div class="widget-container">
+      <!-- Display widget -->
+      <div class="widget display-widget">
+        <iframe id="display-iframe" src="https://display-flowjockey.glitch.me"></iframe>
+      </div>
+
+      <!-- Moderate widget -->
+      <div class="widget moderate-widget">
+        <iframe id="moderate-iframe" src="https://perform-flowjockey.glitch.me"></iframe>
+      </div>
+
+      <!-- Draw widget (loaded last with JavaScript) -->
+      <div class="widget draw-widget">
+        <iframe id="draw-iframe" src=""></iframe>
+        <button class="refresh-btn" onclick="refreshIframe('draw-iframe')">Refresh</button>
+      </div>
+    </div>
+
+    <script src="DrawingApp/js/menu.js"></script>
+    <script src="assets/js/girlypop.js"></script>
+
+    <!-- JavaScript to delay loading of the draw iframe -->
+    <script>
+      // Wait until the window has fully loaded
+      window.onload = function() {
+        // Load moderate iframe after 1 second
+        setTimeout(function(){
+          document.getElementById('moderate-iframe').src = "https://perform-flowjockey.glitch.me";
+        }, 1000); // 1 second delay for moderate-iframe
+
+        // Load draw iframe after another 1 second (2 seconds in total)
+        setTimeout(function() {
+          document.getElementById('draw-iframe').src = "https://draw-flowjockey.glitch.me";
+        }, 1000); // 2 seconds delay for draw-iframe
+      };
+
+      // Function to refresh an iframe by ID
+      function refreshIframe(iframeId) {
+        var iframe = document.getElementById(iframeId);
+        iframe.src = iframe.src; // Reset the src to refresh the iframe
+      }
+    </script>
+  </div>
 </body>
 
 </html>
