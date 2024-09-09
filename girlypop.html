@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>girlypop</title>
+    <!-- START: Styles -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/css/combined.css?v=2">
+    <!-- END: Styles -->
+</head>
+
+<body class = "fullcontainer horizontal-center pinkcontainer" id = "fullheight">
+    <navbar class = "navbar-contents">
+        <!--START: Navbar-->
+            <div class = "text-over-image">
+                <a href = "index.html#main">
+                    <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
+                    <span id = "logo-text" class = "header centered-text">katie <3</span> 
+                </a>
+            </div>
+            <!-- END: Navbar -->
+    </navbar>
+    <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+    <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+    <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+    <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+    <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+    <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+    <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+    <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+    <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+    <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+    <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+    <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+    <div class="raisez basic-container" id="withmargins">
+        <h1 class = "horizontal-center"> but make it <span class="girly-text">~girlypop~<span> </h1>
+            <h2 class = "widthlimit1">
+                type in a description of an image you want to see and i'll make it girlypop for ya!
+            </h2>
+            <h3 class = "widthlimit2">
+                all you need is an openAI api-key (cuz im NOT your sugar momma) and then you'll be good to go!
+            </h3>
+        
+            <div class="horizontal-center"></div>
+            <div class="horizontal-left blockdisp">
+                <p class = "spacer1">pls enter your api key: <input id="api-key" value="your-api-key"></p>
+        
+                <div>
+                    <p class = "spacer2">and add a description below of the image you wanna see:</p>
+                    <textarea id = "text-prompt" rows="5" cols = "64">what do you want to make a girlypop pic of?</textarea>
+                </div>
+            
+                <section>
+                    <div class="spacer3">
+                        do you wanna add googly eyes? 
+                    </div>
+                
+                    <div>
+                        <input type="radio" id="googly" name = "googlyeyes" value = "and add google eyes" checked>
+                        <label for="and add google eyes">hell yeah!!!</label>
+                    </div>
+                    
+                    <div>
+                        <input type="radio" id="notgoogly" name = "googlyeyes" value = " ">
+                        <label for="nogooglyeyes">nah, not for me :(</label>
+                    </div>
+                </section>
+        
+                <section>
+                    <div class="spacer3">
+                        Image size: 
+                    </div>
+                
+                    <div>
+                        <input type="radio" id="radio-square" name = "image-size" value = "1024x1024" checked>
+                        <label for="1024x1024">1024x1024</label>
+                    </div>
+                    
+                    <div>
+                        <input type="radio" id="radio-wide" name = "image-size" value = "1792x1024">
+                        <label for="1792x1024">1792x1024</label>
+                    </div>
+                
+                    <div>
+                        <input type="radio" id="radio-long" name = "image-size" value ="1024x1792">
+                        <label for="1024x1792">1024x1792</label>
+                    </div>
+                </section>
+            </div>
+        
+            
+        
+            
+            
+                <div class="spacer3">
+                    <button id="button-request">get my image!</button>
+                </div>
+        
+            
+        
+            <div class="spacer2">
+                <p id = "request-status">status: nothing requested yet!</p>
+            </div>
+        
+            <div id = "image-container"></div>
+
+    </div>
+    <!-- START: Scripts -->    
+    <script src = "/assets/js/dalle.js"></script>
+    <script src = "assets/js/girlypop.js"></script> 
+    <!-- END: Scripts -->
+
+</body>
+
+</html>

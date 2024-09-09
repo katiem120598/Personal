@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Canvas drawing</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="ResponsiveEnv\styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<!--CHATGPT was used to assist in -->
+<!--div id = "main" class="pinkcontainer">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  </div-->
+
+<body class="fullcontainer">
+        <div class="navbar-contents">
+            <button class="dropdown-button" onclick="handleMenu()">&#9776;</button>
+            <ul class="navlist" id="mylinks">
+                <li><a href="#projectionmapping">projection mapping</a></li>
+                <li><a href="#physicaltests">physical tests</a></li>
+            </ul>
+        </div>
+        <!-- END: Navbar -->
+    <navbarog  id ="projectionmapping" class = "navbar-contentsog">
+      <div class = "text-over-image">
+        <!--a href = "index.html#main">
+            <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
+            <span id = "logo-text" class = "header centered-text">katie <3</span> 
+        </a-->
+      </div>
+      <div class="whitetext centered-text">
+        <div>
+          <p class = "whitetext">
+            projection mapping
+          </p>   
+        </div>
+        <div>
+          <p>
+            a, s: left, right | d, f: up, down | left, right: change angle
+          </p>
+        </div>
+        
+      </div>
+    </navbarog>
+    <div class = "file-and-canvas-container">
+      <div class="main-content-area">
+        <!-- Main Canvas Container -->
+        <main class="canvas-container"></main>
+        <!-- Choose File Button and Associated Canvases Container -->
+        <div class="file-and-canvas-container">
+          <input type="file" id="imageUpload" accept="image/*" class="button">
+          <canvas id="canvasOriginal" ></canvas>
+          <canvas id="canvasWithOpacity" ></canvas>
+        </div>
+      </div>
+      <navbarog  id = "physicaltests"  class = "navbar-contentsog">
+        <div class = "text-over-image">
+          <!--a href = "index.html#main">
+              <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
+              <span id = "logo-text" class = "header centered-text">katie <3</span> 
+          </a-->
+        </div>
+        <div class="whitetext centered-text">
+          <div>
+            <p class = "whitetext">
+              physical tests
+            </p>   
+          </div>
+        </div>
+      </navbarog>
+      
+      <div class="canvas-container">
+        <p class="whitetext smaller">0% ambient light</p>
+      </div>
+      <div class="main-content-area2 image-container">
+          <img src="ResponsiveEnv/0.jpg" alt="Image 1" >
+          <img src="ResponsiveEnv/0up.jpg" alt="Image 1">
+        <!-- Main Canvas Container -->    
+      </div>
+
+      <div class="canvas-container">
+        <p class="whitetext smaller">20% ambient light</p>
+      </div>
+      <div class="main-content-area2 image-container">
+        <img src="ResponsiveEnv/20.jpg" alt="Image 1" >
+        <img src="ResponsiveEnv/20up.jpg" alt="Image 1">
+      <!-- Main Canvas Container -->    
+    </div>
+
+      <div class="canvas-container">
+        <p class="whitetext smaller">50% ambient light</p>
+      </div>
+      <div class="main-content-area2 image-container">
+        <img src="ResponsiveEnv/50.jpg" alt="Image 1" >
+        <img src="ResponsiveEnv/50up.jpg" alt="Image 1">
+      <!-- Main Canvas Container -->    
+    </div>
+
+      <div class="canvas-container">
+        <p class="whitetext smaller">100% ambient light</p>
+      </div>
+      <div class="main-content-area2 image-container">
+        <img src="ResponsiveEnv/100.jpg" alt="Image 1" >
+        <img src="ResponsiveEnv/100up.jpg" alt="Image 1">
+      <!-- Main Canvas Container -->    
+    </div>
+
+     
+      <navbarog class = "navbar-contentsog">
+        <div class = "text-over-image">
+          <!--a href = "index.html#main">
+              <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
+              <span id = "logo-text" class = "header centered-text">katie <3</span> 
+          </a-->
+        </div>
+      </navbarog>
+    </div>
+  </div>
+
+
+
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.js"></script>
+  <script src="ResponsiveEnv/imageupload.js"></script>
+  <script src="ResponsiveEnv/reflectionnomir.js"></script>
+  <script src = "ResponsiveEnv/menu.js"></script>
+
+
+  <!-- Use full p5.js library when developing locally -->
+
+  
+  
+  <!-- Switch to minified version when deploying for production/use -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script> -->
+
+  <!-- Load utility functions -->
+
+  <!-- Load main sketch -->
+  <!--script type="text/javascript" src="/DemoScene/shader.js"></script-->
+</body>
+
+</html>

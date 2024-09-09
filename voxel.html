@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Canvas drawing</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="assets\css\combined.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="fullcontainer" style="background:black">
+  <div id = "main" class="pinkcontainer" style="background:black;height:fit-content">
+  <div>
+    <navbarog class = "navbar-contentsog">
+      <div class = "text-over-image">
+        <a href = "index.html#main">
+            <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
+            <span id = "logo-text" class = "header centered-text">katie <3</span>
+        </a>
+      </div>
+      <p class = "centered-text" style = "color:white; text-align: center; position: absolute;
+      top: 60px; left: 50vw;font-style:oblique; font-size:36px">
+        muybridge movements
+      </p>    
+    </navbarog>
+    </div>
+  </div>
+  <div class="image-gallery">
+    <div class = "image-row">
+      <img src = "voxel/p1.png">
+      <img src = "voxel/p2.png">
+      <img src = "voxel/p3.png">
+    </div>
+    <div class = "image-row" style="color:white; padding: 20px">
+      Eadweard Muybridge was a monumental figure in the history of photography and motion picture technology, bridging the gap between still photography and the advent of motion pictures. Our project is inspired by his work, but rather than trying to capture motion through photography, we are attempting to capture it through sculpture. We selected the above three images to test whether all three of these images could be represented via different angles of viewing within one multimaterial 3d print. To accomplish this task, three voxel fields were created, rotated, and baked in Grasshopper. Then, the resulting 3d objects were each shrinkwrapped and converted from mesh to nurbs to find the boolean intersection. Finally, the resulting shape was shrinkwrapped and a mesh was created for the surrounding clear shape in order to show to the using from which angles the different images can be viewed.
+    </div>
+    <button class="dropdown-toggle" onclick="toggleDropdown()">Toggle Process</button>
+    <!-- Image row to be toggled -->
+    <div class="dropdown-content">
+      <div class="image-row dropimg">
+        <img src="voxel/p4.png" alt="Image 1">
+        <img src="voxel/p5.png" alt="Image 2">
+        <img src="voxel/p6.png" alt="Image 3">
+      </div>
+      <div class="image-row dropimg">
+        <img src = "voxel/p7.png">
+        <img src = "voxel/p8.png">
+        <img src = "voxel/p9.png">
+      </div>
+    </div>
+  </div>
+  <div class="image-gallery"style="margin-bottom:50px">
+      <img src = "voxel/jumping.gif" style="height:50vh;width:auto;object-fit:contain;">
+  </div>
+  <!-- END: Navbar -->
+
+  <!--starting body content...should be stacked vertically with header-->
+<script src = "assets/js/girlypop.js"></script>
+<script src = "voxel/dropdowntoggle.js"></script>
+</body>
+
+</html>

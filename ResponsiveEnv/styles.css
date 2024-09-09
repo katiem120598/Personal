@@ -1,0 +1,350 @@
+/* Makes the canvas stick to (0, 0) */
+/* html, body {
+    margin: 0;
+    padding: 0;
+} */
+
+
+/* Makes the canvas centered on the page */
+
+.fullcontainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #000000;
+  margin:50px;
+  margin-left: 100px;
+  margin-right:100px
+}
+
+.main-content-area {
+  display: flex; /* This will align the child divs side by side */
+  justify-content: center; /* Center the items horizontally */
+  align-items: center; /* Align items to the start of the cross axis */
+  padding: 50px; /* Add some space around */
+  gap: 20px;
+}
+
+.main-content-area2 {
+  display: flex; /* This will align the child divs side by side */
+  flex-direction: row;
+  align-items: center; /* Align items to the start of the cross axis */
+  padding: 20px; /* Add some space around */
+  gap: 20px;
+}
+
+.imgdisplay {
+  display: flex; /* This will align the child divs side by side */
+  flex-direction:row;
+  justify-content: center;
+  align-items: center; /* Align items to the start of the cross axis */
+}
+.pinkcontainer {
+  margin: 0;
+  padding: 0;
+  width:100%;
+  height:900px;
+  background-color:#000000;
+  /*background: linear-gradient(45deg, #ffa7e9, #b5d1ff);*/
+  display: flex;
+}
+canvas {
+  padding: 0;
+  margin: auto;
+  display: flex;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.horizontal-left{
+  display: inline-block;
+  text-align: left;
+}
+.blockdisp{
+  display:flex;
+  flex-direction: column;
+  width: max-content;
+}
+
+
+.navbar-contents {
+  position: absolute;
+  text-align: right;
+  top: 90px;
+  right: 100px; /* Adjusts the navbar to hug the right side */
+  z-index: 1000; /* Ensures it's above the canvas */
+}
+
+/* Additional styling for the navbar to make it visually fitting */
+.navbar-contents .dropdown-button {
+  cursor: pointer;
+  background-color: #eee; /* Example color */
+  border: none;
+  width: fit-content;
+  width: 50px;
+  height: 40px;
+  padding: 10px;
+}
+.dropdown-button{
+  position:fixed;
+}
+
+.navbar-contents .navlist {
+  display: none; /* Hidden by default, shown on button click */
+  list-style-type: none;
+  text-align: left;
+  padding: 10;
+  margin: 10;
+  background-color: #f9f9f9; /* Example color */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.navlist{
+  width: fit-content;
+  padding: 10px;
+}
+
+.navbar-contents .navlist li a {
+  right: 0;
+  text-align: left;
+  display: block;
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+}
+
+/* Hover effects */
+.navbar-contents .navlist li a:hover {
+  background-color: #ddd;
+}
+
+.dropdown-button .fa {
+  font-size: 24px; /* Adjust the size as needed */
+  color: #333; /* Adjust the color as needed */
+}
+
+
+@font-face {
+  font-family: 'girlypop';
+  src: url(../fonts/CherryBombOne-Regular.ttf)
+}
+.girly-text {
+  font-family: 'girlypop';
+  color: #000000;
+  font-size: 3.5rem;
+  z-index: 100;
+  position: relative
+}
+
+.random-image {
+  position: absolute;
+  height: auto;
+  max-width: 100px;
+  top: var(--random-top) ;
+  left: var(--random-left);
+  z-index: 0;
+  /* Above the background but below the text */
+  animation: sparkle-animation 20s ease-in-out infinite;
+}
+@keyframes sparkle-animation {
+  0% {
+      transform: scale(var(--random-scale1)) translate(0px,0px) rotate(var(--randrot1));
+  }
+
+  25% {
+      transform: translate(var(--randx1),var(--randy1));
+  }
+
+  50% {
+      transform: scale(var(--random-scale2)) translate(var(--randx2),var(--randy2)) rotate(var(--randrot2));
+  }
+
+  75% {
+      transform: translate(var(--randx3),var(--randy3));
+  }
+
+  100% {
+      transform: scale(var(--random-scale1)) translate(0px,0px) rotate(var(--randrot1));
+  }
+}
+
+.text-over-image {
+  position: relative;
+  height: 82.35px;
+  text-align: center;
+  display: inline-block; /* Change display to inline-block to avoid centering */
+  border: 10px solid transparent; /* Add a 10px border */
+}
+
+#logo-text{
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+}
+
+.navbar-contentsog{
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.centered-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 24px;
+}
+p,body{
+  font-size: 15px;
+  font-weight: 400;
+  font-family: Work Sans, sans-serif;
+  margin: 0;
+}
+.whitetext{
+  font-style:oblique;
+  color:#ddd;
+  font-size:36px;
+}
+.footer{
+  font-style:oblique;
+  color:#ddd;
+  font-size:36px;
+  display:block;
+  position:absolute;
+  top:95%;
+  left:50%;
+  transform: translate(-50%, -94%);
+  font-size:15px;
+  text-align:center;
+}
+.button{
+  font-size: 15px;
+  font-weight: 500;
+  font-family: Work Sans, sans-serif;
+  margin-left: 0px;
+  padding: 0;
+}
+h1{
+  font-size: 30px;
+  font-family: Work Sans, sans-serif;
+  font-weight: 1000;
+}
+h2{
+  font-size: 18px;
+  font-family: Work Sans, sans-serif;
+  font-weight: 400;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+navbarog {
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 101;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.canvas-container{
+  align-items: center; /* Center them horizontally */
+}
+.canvas-container, .file-and-canvas-container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  
+  padding: 0px;
+}
+.file-and-canvas-container {
+  display:inline-flex;
+  align-items: left;
+}
+
+.file-sidebyside{
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  
+  padding: 0px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+/* Adjust the canvas size as necessary */
+canvas {
+  max-width: 100%; /* Adjust this as needed */
+  height: auto; /* Adjust this as needed */
+}
+
+.navbar-contentsog {
+  width: 100%;
+  /* Ensure there's no absolute positioning overlapping the content */
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  /* Remove absolute positioning if it's causing overlap */
+}
+
+#canvasOriginal, #canvasWithOpacity{
+  padding:0px;
+  margin: 0px;
+  width:228.4px;
+  height:228.4px;
+  margin-top:10px;
+  align-items:left;
+}
+
+.smaller{
+  font-size: 16px;
+  font-style:normal;
+}
+
+.main-content-area,.main-content-area2{
+  flex-wrap: wrap; /* Allows items to wrap to the next line if space runs out */
+}
+
+.image-container {
+  display: flex; /* Activates Flexbox layout */
+  flex-direction: row; /* Aligns children (images) in a row */
+  justify-content: center; /* Horizontally centers the images within the container */
+  align-items: center; /* Vertically aligns the images in the middle */
+  flex-wrap: wrap; /* Allows images to wrap onto the next line if there isn't enough space */
+  gap: 80px; /* Adds 20px space between the images */
+  margin-bottom:20px;
+}
+
+.image-container img {
+  max-width: 300px; /* Ensures the image is not wider than its container */
+  height: auto; /* Maintains the aspect ratio */
+}
+
+@media screen and (max-width: 10000px) {
+  .dropdown-button{
+      display:fixed;
+      top:50px;
+      right:75px;
+  }
+
+  .navlist {
+      display: none;
+      position: fixed;
+      top: 75px; /* Adjust the top position as needed */
+      right: 75px;
+      background: #b62fff1e; /* Background color for the dropdown menu */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+  }
+
+  .navlist li {
+      margin: 10px;
+  }

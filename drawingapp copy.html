@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Canvas drawing</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="DrawingApp\css\styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<!--CHATGPT was used to assist in -->
+<!--div id = "main" class="pinkcontainer">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  </div-->
+
+</div>
+<body class="fullcontainer">
+  <div id = "main" class="pinkcontainer">
+  <div>
+    <navbarog class = "navbar-contentsog">
+      <div class = "text-over-image">
+        <a href = "index.html#main">
+            <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
+            <span id = "logo-text" class = "header centered-text">katie <3</span> 
+        </a>
+      </div>
+    </navbarog>
+    <!--START: Navbar-->
+      <div class="navbar-contents">
+          <button class="dropdown-button" onclick="handleMenu()"><i class="fa fa-cog"></i></button>
+          <ul class="navlist" id="mylinks">
+              <li>                
+                <div>
+                background color:
+                </div>
+                  <input type="radio" id="noise" name = "noise" value = "noise" checked>
+                  <label for="noise">noise</label>
+                <div>
+                  <input type="radio" id="noise2" name = "noise" value = "solid">
+                  <label for="solid">solid color</label>
+                  <div>
+                    <input type = "color" id="background" name = "backgroundcolor" value = #000000>
+                  </div>
+                </div></li>
+              <li>                
+                <div>
+                on click:
+                </div>
+                  <input type="radio" id="remove" name = "remove" value = "remove" checked>
+                  <label for="remove">delete shape</label>
+                  <div>
+                    <input type="radio" id="remove2" name = "remove" value = "keep">
+                    <label for="keep">apply fill color</label>
+                  </div>
+                  <div>
+                    <input type="color" id="fill" name = "fillcolor" value = #FFFFFF>
+                    <label for="fill"></label>
+                  </div>
+                <div>
+              </li>
+              <li>
+                <button id = "clear">clear all</button>
+              </li>
+          </ul>
+      </div>
+      <!-- END: Navbar -->
+    </navbar>
+    <script type="text/javascript" src="DrawingApp/js/p5.min.js"></script>
+    <script type="text/javascript" src="DrawingApp/js/test2.js"></script>
+  </div>
+  <!--div class="horizontal-left blockdisp">
+    <p>pls enter your api key: <input id="api-key" value="your-api-key"></p>
+
+    <div>
+        <p>and add a description below of the image you wanna see:</p>
+        <textarea id = "text-prompt" rows="5" cols = "64">what do you want to make a girlypop pic of?</textarea>
+    </div>
+
+    <section>
+        <div>
+            do you wanna add googly eyes? 
+        </div>
+    
+        <div>
+            <input type="radio" id="googly" name = "googlyeyes" value = "and add google eyes" checked>
+            <label for="and add google eyes">hell yeah!!!</label>
+        </div>
+        
+        <div>
+            <input type="radio" id="notgoogly" name = "googlyeyes" value = " ">
+            <label for="nogooglyeyes">nah, not for me :(</label>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            Image size: 
+        </div>
+    
+        <div>
+            <input type="radio" id="radio-square" name = "image-size" value = "1024x1024" checked>
+            <label for="1024x1024">1024x1024</label>
+        </div>
+        
+        <div>
+            <input type="radio" id="radio-wide" name = "image-size" value = "1792x1024">
+            <label for="1792x1024">1792x1024</label>
+        </div>
+    
+        <div>
+            <input type="radio" id="radio-long" name = "image-size" value ="1024x1792">
+            <label for="1024x1792">1024x1792</label>
+        </div>
+    </section>
+    
+
+</div-->
+</div>
+<script src = "DrawingApp/js/menu.js"></script>
+<script src = "assets/js/girlypop.js"></script>
+</body>
+
+</html>

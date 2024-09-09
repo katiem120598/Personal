@@ -1,0 +1,38 @@
+<!-- https://thebookofshaders.com/04/ -->
+<body>
+    <div id="container"></div>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- Unfortunately, unless we use Three.js loaders, the shader code needs to be embedded in the HTML -->
+    <script id="vertexShader" type="x-shader/x-vertex">
+        void main() {
+            gl_Position = vec4( position, 1.0 );
+        }
+    </script>
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        uniform vec2 u_resolution;   // screen size in pixels
+        uniform vec2 u_mouse;		 // mouse location (XY) and click (ZW) in pixels
+        uniform float u_time;		 // elapsed program time in seconds
+        
+        // Main fragment function
+        void main() {
+            // Center of the screen
+            vec2 center = 0.5 * u_resolution;
+            
+            // Distance from this pixel to the mouse
+            float dist = length(gl_FragCoord.xy - u_mouse.xy);
+            
+            // Compute gray value based on a modulated sin wave
+            float gray = 0.5 * (sin(0.2 * dist - u_time) + 1.0);
+            
+            // Set the RGBA color of this pixel
+            // by assigning a vec4 value to the built-in `gl_FragColor` variable
+            gl_FragColor = vec4(gray, gray, gray, 1.0);
+        }
+    </script>
+
+    <!-- <script src="lib/three.js"></script> -->
+    <script src="lib/three.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
