@@ -11,12 +11,14 @@ body {
 /*BODY CLASSES*/
 .fullcontainer {
     width: 100%;
+    min-height: 100vh;
     height: auto;
     margin: 0;
     background-color: #ffffff; /* Change this to your desired background color */
     /* Add any other styles or content you want for your container */
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 #withmargins{
     margin-left:30px;
@@ -28,9 +30,13 @@ body {
     margin: 0;
     padding: 0;
     width:100%;
-    height:100vh;
+    min-height:100vh;
     background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
 }
 #fullheight{
     min-height: 100vh;
@@ -75,6 +81,7 @@ textarea,input,#request-status{
     src: url(../fonts/CherryBombOne-Regular.ttf)
 }
 .girly-text {
+    z-index:1;
     font-family: 'girlypop';
     color: #000000;
     font-size: 3.5rem;
@@ -469,4 +476,68 @@ a{
     width: 100%;
     font-size: 16px;
 
+}
+
+/* Cloud background and grid layout */
+.assignment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
+    grid-auto-rows: minmax(20vh, auto); /* Rows will be at least 20% of viewport height and grow proportionally */
+    grid-gap: 20px; /* Space between grid items */
+    justify-items: center;
+    align-items: stretch; /* Stretches the grid items to fill the available height */
+    width: 90%; /* Ensure grid spans full width */
+    height: 80%;
+}
+
+
+.cloud-item {
+    position: relative;
+    width: 250px;
+    height: 150px;
+    background-image: url('assets/images/cloud.png'); /* Replace with your cloud image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 1; /* Ensure it's placed correctly in the stacking order */
+}
+
+@media (max-width: 1000px) {
+    .assignment-grid {
+        grid-template-columns: 1fr; /* Switch to 1 column on even smaller screens */
+        overflow-y: auto;
+    }
+
+    .pinkcontainer {
+        justify-content: flex-start; /* Ensure content starts at the top */
+        min-height: 100vh;
+        height: auto; /* Allow content to expand and fill the page */
+    }
+}
+
+
+.custom-bg-grid {
+    position: relative;
+    width: 300px;
+    height: auto;
+    background-image: url('assets/images/cloud.png');
+    background-size: 95%; /* Background slightly smaller than container */
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
