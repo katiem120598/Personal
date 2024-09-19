@@ -206,6 +206,7 @@ h2{
   margin-top:10px;
   margin-bottom:10px;
 }
+
 navbarog {
   position: fixed;
   top: 0;
@@ -220,3 +221,13 @@ navbarog {
   padding-bottom:10px;
 }
 
+.image-grid {
+  display: flex;
+  gap: 10px; /* Adjust the gap between images as needed */
+}
+
+.image-grid img {
+  flex: 1;
+  max-width: 100%;
+  height: auto;
+}
