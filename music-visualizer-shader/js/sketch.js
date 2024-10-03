@@ -6,6 +6,8 @@ let myShader;
 let jlx;
 
 
+
+
 function preload(){
 //  sound = loadSound('assets/samplesound_techno_volume_03.mp3');
   myShader = loadShader('shaders/vshader.vert', 'shaders/fshader-waveform-sampler2d.frag');
