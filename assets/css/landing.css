@@ -193,7 +193,7 @@ navbar {
 }
 
 /* Media query to show the dropdown on smaller screens */
-@media screen and (max-width: 800px) {
+
     .dropdown-button{
         display:flex;
     }
@@ -212,7 +212,7 @@ navbar {
         margin: 10px;
     }
 
-}
+
 /* Show the dropdown when the button is clicked */
 .dropdown-button.active + .navlist {
     display: flex;
