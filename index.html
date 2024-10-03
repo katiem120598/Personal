@@ -11,36 +11,36 @@
     <!-- START: Styles -->
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="assets/css/combined.css?v=2">
+    <link rel="stylesheet" href="assets/css/landing.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- END: Styles -->
 </head>
 
-<body class = "fullcontainer">
+<body>
     <navbar class = "navbar-contents">
     <!--START: Navbar-->
-        <div class = "text-over-image">
+        <div class = "home-button">
             <a href = "#main">
-                <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
-                <span id = "logo-text" class = "header centered-text">katie <3</span> 
+                <img class = logo src="assets/images/explosion_bubble.png" alt="" width="150">
+                <span class = "home-button-text">katie <3</span> 
             </a>
         </div>
 
-
         <div>
             <button class="dropdown-button" onclick="handleMenu()">&#9776;</button>
-            <ul class="navlist" id="mylinks">
+            <ul class="navlist">
                 <li><a href="#about">about</a></li>
                 <li><a href = "ps70.html">ps70</a></li>
                 <li><a href="proceduraldesign.html">procedural design</a></li>
                 <li><a href="responsive.html" target="_blank">responsive env</a></li>
             </ul>
         </div>
-        <!-- END: Navbar -->
     </navbar>
+    <!-- END: Navbar -->
 
     <!-- START: Main -->
     <div id = "main" class="pinkcontainer">
+
         <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
         <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
         <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
@@ -53,26 +53,26 @@
         <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
         <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
         <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
-        <div>
-            <div class="centered-text">
-                <h1 class="girly-text">im! just!! a girl!!!</h1>
-            </div>
+
+        <div class="centered-text">
+            <h1>im! just!! a girl!!!</h1>
         </div>
 
         <div>
             <a class = "bottom-arrow" href="#about">
-                <img src = "assets/images/downarrow.png" class="nk-header-title-scroll-down" alt="" width="50">
+                <img src = "assets/images/downarrow.png" alt="" width="50">
             </a>
         </div>
+
     </div>
     <!-- END: Main Page -->
 
     <!-- START: About-->
-    <div id="about" class="aboutcontainer">
+    <div id = "about" class="whitecontainer">
         <div class="bg-image-wrapper"> 
             <div class="custom-bg-size" style="background-image: url('assets/images/cloud.png');">
                 <div class = "text-content">
-                    <h1>me!!!</h1>
+                    <h2>me!!!</h1>
                     <p>^just a girl lost in the world. some experience in chemical engineering, industrial engineering, big oil, big chemicals, airline industry, quant finance. working on master of design at harvard and online master of cs at georgia tech. tryna tap into some audio visuals and have fun while i still get to delay adulthood (:
                     </p>
                 </div>
@@ -88,11 +88,8 @@
     <script src = "assets/js/pinkexplode.js"></script> 
     <script src = "assets/js/menu.js"></script>
     
-    
     <!-- END: Scripts -->
-
-
-
+     
 </body>
 
 </html>
