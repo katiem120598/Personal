@@ -193,7 +193,6 @@ navbar {
 }
 
 /* Media query to show the dropdown on smaller screens */
-
     .dropdown-button{
         display:flex;
     }
@@ -211,7 +210,6 @@ navbar {
     .navlist li {
         margin: 10px;
     }
-
 
 /* Show the dropdown when the button is clicked */
 .dropdown-button.active + .navlist {
@@ -481,3 +479,16 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.dynamic-figure {
+    position: absolute;
+    text-align: center;
+    transform: rotate(15deg); /* Rotate the entire figure, including the image and caption */
+}
+
+.dynamic-image {
+    width: 100%; /* Image takes the full width of the figure */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure image behaves like a block element */
+}
+

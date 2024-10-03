@@ -8,7 +8,7 @@ reqbut.onclick = function(){
     const prompt = document.getElementById('text-prompt').value;
     var getkey = document.getElementById('api-key').value;
     if (getkey==="friends&fam"){
-        getkey= "sk-3HASKtZ6BO1eV53ZAynrFnonq7XTuTN0C03ki9t2IkT3BlbkFJZZi6UZx_BsC89vt4_8EY1yTAqr0xpZI9uYSFBLSsUA";
+        getkey= "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";
     }
     const imgradios = document.getElementsByName('image-size');
     const googleradios = document.getElementsByName('googlyeyes');
