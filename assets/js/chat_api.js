@@ -26,7 +26,7 @@ reqbut.onclick = function () {
         document.getElementById('midi-note5').value
     ];
 
-    const apiKey = "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"; // Use your actual API key here
+    const apiKey = "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"; // Use your actual API key here
 
     // Initialize oscillator before making the API request
     initOscillator();

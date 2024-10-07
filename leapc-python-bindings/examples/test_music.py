@@ -53,11 +53,7 @@ async def send_coordinates(websocket, listener):
         await asyncio.sleep(0.01)  # Send updates at a high frequency (adjust as needed)
 
 def main():
-    my_listener = MyListener()import asyncio
-import websockets
-import json
-import leap
-import time
+    my_listener = MyListener()
 
 class MyListener(leap.Listener):
     def __init__(self):

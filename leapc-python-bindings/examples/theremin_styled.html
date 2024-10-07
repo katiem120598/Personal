@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Leap Motion Theramin</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href=".\styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="fullcontainer">
+
+    <div id = "main" class="pinkcontainer">
+        <div>
+          <navbarog class = "navbar-contentsog">
+            <div class = "text-over-image">
+              <a href = "index.html#main">
+                  <img class = "explodelogo" src="assets/images/explosion_bubble.png" alt="" width="150">
+                  <span id = "logo-text" class = "header centered-text">katie <3</span> 
+              </a>
+            </div>
+            <div class="whitetext centered-text">
+              <div>
+                <p class = "whitetext">
+                  ~sound assistance~
+                </p>   
+              </div>
+              <div>
+                <br>
+                </div>
+                <button id="startBtn">Start</button>
+            <button id="playBtn" disabled>Play Recording</button>
+            <br>
+            <br>
+            <p id="request-status"></p>
+            </div>
+          </navbarog>
+    </div>
+    <div class="footer">
+      <p>
+        move your hand over the leap motion to play the theremin
+      </p>
+      <p>
+        play your recording back to hear chatgpt's additions
+      </p>
+    </div>
+  </div>
+  
+  <!-- Switch to minified version when deploying for production/use -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script> -->
+
+  <!-- Load utility functions -->
+
+  <!-- Load main sketch -->
+  <!--script type="text/javascript" src="/DemoScene/shader.js"></script-->
+  <script>
+        let socket = new WebSocket("ws://localhost:8765");
+        let osc, gptOsc, recorder, soundFile;
+        let isRecording = false;
+        let recordingStartTime;
+        let gptNotes = []; // Placeholder for GPT-generated notes
+        let apiKey = "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"; // Replace with your actual GPT-4 API key
+        let playbackDuration = 10000; // 10 seconds
+        let userDots = []; // To store user input dots
+        let gptDots = [];  // To store GPT-generated input dots
+        let isPlayingBack = false; // To track when GPT notes are playing back
+    
+        // Setup function for p5.js
+        function setup() {
+          createCanvas(400, 400);
+          
+          osc = new p5.Oscillator('sine');
+          osc.start();
+          osc.amp(0); // Initially no sound
+    
+          gptOsc = new p5.Oscillator('triangle'); // Different waveform for GPT sound
+          gptOsc.start();
+          gptOsc.amp(0); // Initially no sound
+    
+          // Recorder and sound file setup
+          recorder = new p5.SoundRecorder();
+          soundFile = new p5.SoundFile();
+    
+          // Button interactions
+          document.getElementById('startBtn').addEventListener('click', startRecording);
+          document.getElementById('playBtn').addEventListener('click', playRecording);
+        }
+    
+        function startRecording() {
+          if (!isRecording) {
+            userDots = [];
+            gptDots = [];
+            osc.amp(0.5); // Enable sound
+            recorder.record(soundFile); // Start recording
+            recordingStartTime = millis(); // Record the current time
+            isRecording = true;
+            setTimeout(stopRecording, playbackDuration); // Automatically stop after 10 seconds
+          }
+        }
+    
+        function stopRecording() {
+          if (isRecording) {
+            recorder.stop(); // Stop recording
+            isRecording = false;
+            osc.amp(0); // Silence the oscillator
+            document.getElementById('request-status').innerText = 'Fetching complementary notes from GPT-4...';
+            fetchGPTNotes(); // Fetch complementary notes from GPT after recording
+          }
+        }
+    
+        function playRecording() {
+          if (!soundFile.isPlaying()) {
+            // Play both the recorded sound and GPT-generated sound
+            soundFile.play();
+            playGPTNotes(); // Play the GPT-generated sound simultaneously
+            isPlayingBack = true;
+
+            // Clear GPT dots to prepare for a new drawing
+            gptDots = [];
+
+          }
+        }
+    
+        // Function to map coordinates to sound frequencies
+        function mapCoordinatesToSound(x, y, z) {
+          if (isFinite(x) && isFinite(y) && isFinite(z) && isRecording) {
+            let freq = map(x, -200, 200, 200, 800);
+            osc.freq(freq);
+    
+            let amp = map(y, -200, 200, 0.1, 1);
+            osc.amp(amp);
+
+            userDots.push({
+            x: map(x, -200, 200, 0, width), // Map x to canvas width
+            y: map(amp, 0.1, 1, -height/2, height/2), // Map amplitude to canvas height (inverted for visual clarity)
+            size: map(freq, 20, 800, 10, 50), // Dot size based on frequency
+            color: [101, 213, 247], // Red color for user input
+            color_fill: [101,213,247,,freq*amp/800*255]
+        });
+          } else {
+            console.error("Received non-finite values for hand coordinates:", { x, y, z });
+          }
+        }
+    
+        socket.onmessage = function(event) {
+          let hands = JSON.parse(event.data);
+          
+          if (hands && hands.length > 0) {
+            let hand = hands[0];
+            mapCoordinatesToSound(hand.x, hand.y, hand.z);
+          } else {
+            console.error("No valid hand data received.");
+          }
+        };
+    
+        function draw() {
+            background(0);
+            
+            // Ensure no stroke for text
+            noStroke();
+            
+            // Set text color to white
+            fill(255, 255, 255);
+            
+            // Visual indicator of recording state
+            userDots.forEach((dot, index) => {
+                    if (index % 50 === 0) {  // Only process every 10th dot
+                        push();  // Save current drawing style settings
+                        noFill();
+                        stroke(dot.color);
+                        ellipse(dot.x, dot.y, dot.size, dot.size);
+                        pop();  // Restore previous drawing style settings
+                    }
+                });
+            if (isRecording) {
+                let recordingTime = millis() - recordingStartTime;
+                text(`Recording... ${Math.round(recordingTime / 1000)}s`, 10, 20);
+            }
+            else if(isPlayingBack) {
+                gptDots.forEach((dot, index) => {
+                        push();  // Save current drawing style settings
+                        fill(dot.color_fill);
+                        stroke(dot.color);
+                        ellipse(dot.x, dot.y, dot.size, dot.size);
+                        pop();  // Restore previous drawing style settings
+                });
+            } else {
+                text('Ready to record', 10, 20);
+            }
+        }
+            
+        // Fetch complementary notes from GPT-4 API after recording
+        function fetchGPTNotes() {
+          let userNotes = getUserNotes(); // Use your method to collect user note data from Leap Motion
+          
+          const reqBody = {
+            model: 'gpt-4',
+            messages: [{
+              role: 'user',
+              content: `I have a sequence of MIDI notes: ${userNotes.join(', ')}. Provide 100 complementary MIDI notes for these. The 100 notes provided will be played back simulataneously within the same 10s timeframe as the input notes, so do your best to make the notes you choose make the simultaneous playing sound musical. LIke when played together, they should harmonize and make pleasant sounds. Also, feel free to repeat notes one after another if that makes harmonizing easier at times. I want it to sound melodic. Make it sound like a proper moody/classical song when played with the original recording.`
+            }],
+            max_tokens: 1000
+          };
+    
+          // Disable the play button while fetching
+          document.getElementById('playBtn').disabled = true;
+    
+          fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify(reqBody)
+          })
+            .then(res => res.json())
+            .then(data => {
+              gptNotes = data.choices[0].message.content.split(',').map(Number);
+              document.getElementById('request-status').innerText = 'GPT-4 notes loaded! Ready to play.';
+              document.getElementById('playBtn').disabled = false; // Enable play button
+            })
+            .catch(error => {
+              document.getElementById('request-status').innerText = 'Error fetching GPT notes.';
+              console.error('Error fetching GPT notes:', error);
+            });
+        }
+    
+        // Function to play the GPT-generated sound and finish within the same time as the recording
+        function playGPTNotes() {
+          let i = 0;
+          let totalNotes = gptNotes.length;
+          let noteDuration = playbackDuration / totalNotes; // Make sure all notes finish within the playbackDuration
+    
+          function playNext() {
+            if (i < gptNotes.length) {
+              let freq = midiToFreq(gptNotes[i]);
+              gptOsc.freq(freq); 
+              gptOsc.amp(0.5, 0.05); // Fade in for each note
+    
+              let amp = map(freq, 200, 800, 0.1, 1); // Estimate amplitude based on freq for GPT notes
+                gptDots.push({
+                x: map(freq, 200, 800, 0, width), // X-axis based on frequency
+                y: map(amp, 0.1, 1, height, 0),   // Y-axis based on amplitude
+                size: map(freq*amp, 20, 800, 10, 50),
+                color: [201, 156, 255], // Dot size based on frequency
+                color_fill: [201, 156, 255,freq*amp/800*255] // Blue color for GPT input
+            });
+
+              // Move to next note after the calculated note duration
+              setTimeout(() => {
+                gptOsc.amp(0, 0.05); // Fade out
+                i++;
+                playNext();
+              }, noteDuration);
+            }
+          }
+          playNext(); // Start playing GPT notes
+        }
+    
+        // Helper function to convert MIDI notes to frequency
+        function midiToFreq(midiNote) {
+          return 440 * Math.pow(2, (midiNote - 69) / 12); // Standard formula for converting MIDI to frequency
+        }
+    
+        // Helper function to collect user notes (replace this with real Leap Motion data processing)
+        function getUserNotes() {
+          // Placeholder for now, replace this with the real notes generated from Leap Motion theremin data
+          return [60, 62, 64, 65, 67, 69, 71, 72, 74, 76]; // Example MIDI notes
+        }
+      </script>
+</body>
+
+</html>
