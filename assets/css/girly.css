@@ -488,6 +488,6 @@ html, body {
 
 .dynamic-image {
     width: 100%; /* Image takes the full width of the figure */
-    height: auto; /* Maintain aspect ratio */
+    height: 100%; /* Maintain aspect ratio */
     display: block; /* Ensure image behaves like a block element */
 }
