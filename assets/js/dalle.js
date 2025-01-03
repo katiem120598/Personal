@@ -1,14 +1,16 @@
+require('dotenv').config();
 const reqbut = document.getElementById('button-request');
 const dalleEndpoint = 'https://api.openai.com/v1/images/generations';
 const imgContainer=document.getElementById('image-container');
 const reqStatus = document.getElementById('request-status');
+
 reqbut.onclick = function(){
     reqStatus.innerHTML = "performing request...";
     reqStatus.scrollIntoView({ behavior: 'smooth', block: 'start' });
     const prompt = document.getElementById('text-prompt').value;
     var getkey = document.getElementById('api-key').value;
     if (getkey==="friends&fam"){
-        getkey= "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";
+        getkey= process.env.OPENAI_API_KEY;
     }
     const imgradios = document.getElementsByName('image-size');
     const googleradios = document.getElementsByName('googlyeyes');
