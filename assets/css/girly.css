@@ -11,6 +11,21 @@
     justify-content: center;
     overflow-y: auto;
 }
+.blackcontainer {
+    margin: 0;
+    padding: 0;
+    width:100%;
+    min-height:100vh;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+.whitetext {
+    color: white;
+}
 .whitecontainer{
     flex:1;
     color: #ffffff;
@@ -490,4 +505,16 @@ html, body {
     width: 100%; /* Image takes the full width of the figure */
     height: 100%; /* Maintain aspect ratio */
     display: block; /* Ensure image behaves like a block element */
+}
+
+.normal_list{
+    font-size: 12px;
+    line-height:0;
+    font-style: italic;
+}
+
+.embed{
+    margin-bottom: 100px;
+    width:100%;
+    height:500px;
 }

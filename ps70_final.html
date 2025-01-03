@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Canvas drawing</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+  <!--link rel="stylesheet" href="DemoScene\styles_2.css"-->
+  <link rel="stylesheet" href="assets\css\girly.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<!--CHATGPT was used to assist in -->
+<!--div id = "main" class="pinkcontainer">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  </div-->
+
+  <body >
+    <!--START: Navbar-->
+    <navbar class = "navbar-contents">
+      <div class = "home-button">
+          <a href = "index.html#main">
+              <img class = logo src="assets/images/explosion_bubble.png" alt="" width="150">
+              <span class = "home-button-text">katie <3</span> 
+          </a>
+      </div>
+
+      <div>
+          <button class="dropdown-button menu-container" style = "display:block; color: white" onclick="handleMenu()">&#9776;</button>
+          <ul class="navlist" style="display:none; background: rgb(48, 48, 48);">
+              <li><a href="index.html#about" class = "whitetext">about</a></li>
+              <li><a href="proceduraldesign.html" class = "whitetext">portfolio</a></li>
+              <li><a href = "ps70.html" class = "whitetext">ps70</a></li>
+          </ul>
+      </div>
+    </navbar>
+    <!-- END: Navbar -->
+
+    <div id="main" class = "blackcontainer">
+      <div style="margin-top: 55px; text-align: center;">
+        <p class="whitetext" style="font-size: 30px; font-style:italic;">
+            ~final project!!! lights in 3d~
+            <br>
+        </p>
+
+        <div style = "margin-top: 40px">
+            <p class="whitetext" style="font-size: 20px">
+                step 5: play!! (best part so it comes first)
+                <br><br>
+            </p>
+            <div style="margin-top: 0px; text-align: center;">
+                <video style="height: 60vh" controls>
+                    <source src="assets/images/final.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    <div style="margin-top: 60px; text-align: center;">
+        <p class="whitetext" style="font-size: 20px; ">
+            step 1: inspo <br><br>
+        </p>
+        <img src="./assets/images/led_pixel_array.png" style="height: auto; width: 30vw;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>led pixel array by <a style = "color: rgb(107, 155, 219); text-decoration:underline" href="https://github.com/IttyBittyArtist/led_pixel_array/tree/main">ittybittyartist</a></p>
+    </div>
+    <div style = "margin-top: 40px">
+        <p class="whitetext" style="font-size: 20px">
+            step 2: physical construction
+            <br><br>
+        </p>
+        <img src="./assets/images/final_laser.png" style="height: auto; width: 30vw;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>laser cut file of bottoms and sides used to construct pixel array housing</p>
+    </div>
+    <div style = "margin-top: 40px">
+        <p class="whitetext" style="font-size: 20px">
+            step 3: touchdesigner
+            <br><br>
+        </p>
+        <img src="./assets/images/audio.png" style="height: auto; width: 60vw;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>audio analysis components... had to download new software "cable input and output" on computer to be able to link directly with spotify on my computer<br><br></p>
+        <img src="./assets/images/audio_components.png" style="height: 30vh; width: 10vw;">
+        <img src="./assets/images/led_mapping.png" style="height: 30vh; width: auto;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>(left) four components corresponding to the four different audio-visual light modes... programmed keyboard presses of "1" "2" "3" and "4" to switch the modes
+            <br>(right) led mapping... notes each led's x, y, and z values within coordinate system of the pixel array<br><br></p>
+            <img src="./assets/images/timers.png" style="height: 30vh; width: auto;">
+            <img src="./assets/images/channels.png" style="height: 30vh; width: auto;">
+            <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>(left) timer comopnents to moderate how frequently the python code is running and sending data to the arduino serial port
+                <br>(right) channel component that operates on each timer cycle to switch the values in the led mapping table<br><br></p>
+                br>(right) led mapping... notes each led's x, y, and z values within coordinate system of the pixel array<br><br></p>
+                <img src="./assets/images/code1.png" style="height: auto; width: 60vw;">
+                <img src="./assets/images/code2.png" style="height: auto; width: 60vw;">
+                <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>(top) code that modulates table values upon each timer cycle
+                    <br>(bottom) code that maps channels to r,g,b values and sends a serial message to the arduino serial port<br><br></p>
+    </div>
+    <div style = "margin-top: 40px">
+        <p class="whitetext" style="font-size: 20px">
+            step 4: arduino code
+            <br><br>
+        </p>
+        <img src="./assets/images/ard1.png" style="height: auto; width: 40vw">
+        <div><img src = "./assets/images/ard2.png" style = "height: auto;width: 40vw"></div>
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br> arduino code used to read in serial messages and convert to signals to send to the leds </p>
+    </div>
+
+    <div style = "margin-top: 60px">
+        <p class="whitetext" style="font-size: 20px">
+            step 6: reflect
+            <br><br>
+        </p>             
+        <p class = "whitetext" style = "font-style:normal; font-size: 16px"><br>what worked well:
+        <li><p class = "whitetext normal_list">- the construction looked pretty nice and was easier than expected </p></li>
+        <li><p class = "whitetext normal_list">- i liked the rain mode </p></li>
+        <li><p class = "whitetext normal_list">- i was able to map the audio spectrum to the lights pretty easily </p></li>
+        li><p class = "whitetext normal_list">- ability to switch between audio modes with keyboard presses </p></li>
+        </p>
+        <div style = "margin-top: 20px; margin-bottom: 140px;">         
+        <p class = "whitetext" style = "font-style:normal; font-size: 16px"><br>what didn't :(
+            <li><p class = "whitetext normal_list">- SO SLOW... the serial communication was NOT the move </li>
+            <li><p class = "whitetext normal_list">- spent a lot of time trying to code around the limits of the serial communication (thats where the timers came in) </p></li>
+            <li><p class = "whitetext normal_list">- was annoying to have to reupload arduino code to get the non-audio-visual modes to run </p></li>
+        </p>
+        <div style = "margin-top: 20px; margin-bottom: 140px;">         
+            <p class = "whitetext" style = "font-style:normal; font-size: 16px"><br>future improvements
+                <li><p class = "whitetext normal_list">- swap from arduino to esp32 for faster communication </li>
+                <li><p class = "whitetext normal_list">- use wled software to increase speed and ease transfer bw touchdesigner and microcontroller </p></li>
+        </p>
+        </div>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+  <!-- Load main sketch -->
+  <!--script type="text/javascript" src="/DemoScene/shader.js"></script-->
+  <script src = "assets/js/girlypop.js"></script>
+  <script src = "assets/js/menu_all.js"></script>
+
+
+</html>

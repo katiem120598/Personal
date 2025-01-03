@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Canvas drawing</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+  <!--link rel="stylesheet" href="DemoScene\styles_2.css"-->
+  <link rel="stylesheet" href="assets\css\girly.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<!--CHATGPT was used to assist in -->
+<!--div id = "main" class="pinkcontainer">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  </div-->
+
+  <body >
+    <!--START: Navbar-->
+    <navbar class = "navbar-contents">
+      <div class = "home-button">
+          <a href = "index.html#main">
+              <img class = logo src="assets/images/explosion_bubble.png" alt="" width="150">
+              <span class = "home-button-text">katie <3</span> 
+          </a>
+      </div>
+
+      <div>
+          <button class="dropdown-button menu-container" style = "display:block; color: white" onclick="handleMenu()">&#9776;</button>
+          <ul class="navlist" style="display:none; background: rgb(48, 48, 48);">
+              <li><a href="index.html#about" class = "whitetext">about</a></li>
+              <li><a href="proceduraldesign.html" class = "whitetext">portfolio</a></li>
+              <li><a href = "ps70.html" class = "whitetext">ps70</a></li>
+          </ul>
+      </div>
+    </navbar>
+    <!-- END: Navbar -->
+    <div id="main" class = "blackcontainer">
+      <div style="margin-top: 55px; text-align: center;">
+        <p class="whitetext" style="font-size: 30px; font-style:italic;">
+            ~kinetic scultpure~
+            <br>
+        </p>
+
+    <div style="margin-top: 60px; text-align: center;">
+        <p class="whitetext" style="font-size: 20px; ">
+            step 1: inspo
+        </p>
+        <iframe src="https://studiodrift.com/work/shylight/" style = "margin-top: 40px" width="100%" height="500px" frameborder="0"></iframe>
+    </div>
+    <div style = "margin-top: 40px">
+        <p class="whitetext" style="font-size: 20px">
+            step 2: gear design
+            <br><br>
+        </p>
+        <img src="./assets/images/gear_design.png" style="height: auto; width: 60vw;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>design of gears in rhino</p>
+    </div>
+    <div style = "margin-top: 40px">
+        <p class="whitetext" style="font-size: 20px">
+            step 3: laser cut
+            <br><br>
+        </p>
+        <img src="./assets/images/kinetic_laser.png" style="height: auto; width: 60vw;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>design of stand and gears to be laser cut for display</p>
+    </div>
+    <div style = "margin-top: 40px">
+        <p class="whitetext" style="font-size: 20px">
+            step 4: arduino code
+            <br><br>
+        </p>
+        <img src="./assets/images/kinetic_arduino.png" style="height: 60vh; width: auto">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>code to switch the motor from clockwise to counterclockwise in one sec intervals with 0.5 sec <br>in between each transition to allow white things to go up and down </p>
+    </div>
+    <div style = "margin-top: 40px">
+        <p class="whitetext" style="font-size: 20px">
+            step 5: assemble
+            <br><br>
+        </p>
+        <img src="./assets/images/kinetic_assembly.JPG" style="height: auto; width: 30vw;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>assembly of frame, gears, and motor</p>
+    </div>
+    <div style = "margin-top: 40px">
+        <p class="whitetext" style="font-size: 20px">
+            step 6: run!!
+            <br><br>
+        </p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Ug8BK0IIm5o?si=zqNqO65hv70WffyS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  
+    </div>
+    <div style = "margin-top: 60px">
+        <p class="whitetext" style="font-size: 20px">
+            step 7: reflect
+            <br><br>
+        </p>             
+        <p class = "whitetext" style = "font-style:normal; font-size: 16px"><br>what worked well:
+        <li><p class = "whitetext normal_list">- i liked the shapes of the little white things </p></li>
+        <li><p class = "whitetext normal_list">- the laser-cut frame slotted in nicely together </p></li>
+        <li><p class = "whitetext normal_list">- adding nuts inside of the white things helped weigh them down so that they would go back down when gears went counterclockwise </p></li>
+        <li><p class = "whitetext normal_list">- the set of four gears actually worked for producing variable movements amongst the four white things </p></li>
+        </p>
+        <div style = "margin-top: 20px; margin-bottom: 140px;">         
+        <p class = "whitetext" style = "font-style:normal; font-size: 16px"><br>what didn't :(
+            <li><p class = "whitetext normal_list">- omf was so hard to actually get the motor to stay connected to the gear </li>
+            <li><p class = "whitetext normal_list">- super violent movements... not very reminiscent of the inspo </p></li>
+            <li><p class = "whitetext normal_list">- lots of glue on the back </p></li>
+            <li><p class = "whitetext normal_list">- string used to hold the white things often got stuck in the gears </p></li>
+        </p>
+        <div style = "margin-top: 20px; margin-bottom: 140px;">         
+            <p class = "whitetext" style = "font-style:normal; font-size: 16px"><br>future improvements
+                <li><p class = "whitetext normal_list">- slow the rate of movement of the motor to prevent so much jerking </li>
+                <li><p class = "whitetext normal_list">- actually measure gear ratios and expected movement of the white things </p></li>
+                <li><p class = "whitetext normal_list">- make a better coupler for the motor </p></li>
+        </p>
+        </div>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+  <!-- Load main sketch -->
+  <!--script type="text/javascript" src="/DemoScene/shader.js"></script-->
+  <script src = "assets/js/girlypop.js"></script>
+  <script src = "assets/js/menu_all.js"></script>
+
+
+</html>

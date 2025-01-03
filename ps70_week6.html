@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Canvas drawing</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+  <!--link rel="stylesheet" href="DemoScene\styles_2.css"-->
+  <link rel="stylesheet" href="assets\css\girly.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<!--CHATGPT was used to assist in -->
+<!--div id = "main" class="pinkcontainer">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
+  <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
+  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  </div-->
+
+  <body >
+    <!--START: Navbar-->
+    <navbar class = "navbar-contents">
+      <div class = "home-button">
+          <a href = "index.html#main">
+              <img class = logo src="assets/images/explosion_bubble.png" alt="" width="150">
+              <span class = "home-button-text">katie <3</span> 
+          </a>
+      </div>
+
+      <div>
+          <button class="dropdown-button menu-container" style = "display:block; color: white" onclick="handleMenu()">&#9776;</button>
+          <ul class="navlist" style="display:none; background: rgb(48, 48, 48);">
+              <li><a href="index.html#about" class = "whitetext">about</a></li>
+              <li><a href="proceduraldesign.html" class = "whitetext">portfolio</a></li>
+              <li><a href = "ps70.html" class = "whitetext">ps70</a></li>
+          </ul>
+      </div>
+    </navbar>
+    <!-- END: Navbar -->
+    <div id="main" class = "blackcontainer">
+      <div style="margin-top: 55px; text-align: center;">
+        <p class="whitetext" style="font-size: 30px; font-style:italic;">
+            ~sensors (capacitive and otherwise)~
+            <br>
+        </p>
+
+    <div style="margin-top: 60px; text-align: center;">
+        <p class="whitetext" style="font-size: 20px; ">
+            step 1: capacitive sensor
+        </p>
+        <p class = "whitetext" style = "font-style:italic; font-size: 16px; margin-top:20px;">1.1 arduino code<br><br></p>
+        <img src="./assets/images/capacitor.png" style="height: auto; width: 30vw;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>this code sends power to the "pen" (the wire with the metal at the end)... 
+            <br>it then measures the voltage drop from the pen to the two metal strips (x and y axis)<br>
+            lastly, it converts the capacitance based on the pen movement to coordinates and maps dots on the led screen (top left = low capacitance, bottom right = high)<br><br></p>
+        <p class = "whitetext" style = "font-style:italic; font-size: 16px; margin-top:20px;">1.2 use!!<br><br></p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/vQ0fefli9n4?si=gD9l_XI-9YYZBuvA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        
+    </div>
+    <div style="margin-top: 60px; text-align: center;">
+        <p class="whitetext" style="font-size: 20px; ">
+            step 2: audio sensor (microphone)
+        </p>
+    <div style = "margin-top: 40px">
+        <p class = "whitetext" style = "font-style:italic; font-size: 16px; margin-top:20px;">1.1 arduino code<br><br></p>
+        <img src="./assets/images/mic_1.png" style="height: 80vh; width: auto;">
+        <img src="./assets/images/mic_2.png" style="height: 80vh; width: auto;">
+        <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>this code takes in audio input in from the microphone and then converts the volume to colors in the led 
+            <br>blue = low volume, green = medium volume, red = high volume, white = super duper loud<br>
+            <br><br></p>
+        <p class = "whitetext" style = "font-style:italic; font-size: 16px; margin-top:20px;">1.2 use!! (sound on!!!)<br><br></p>
+        <iframe width="315" height="560"
+            src="https://youtube.com/embed/9L5_y4VEwu0?si=PPCB03fTc38rbB6j"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+
+    </div>
+        
+        <p class = "whitetext" style = "font-style:normal; font-size: 16px"><br>what worked well:
+        <li><p class = "whitetext normal_list">- i was able to map the capacitance to the led monitor </p></li>
+        <li><p class = "whitetext normal_list">- getting the microphone to actually pick up the volume (many mics were broken) </p></li>
+        <div style = "margin-top: 20px; margin-bottom: 140px;">         
+        <p class = "whitetext" style = "font-style:normal; font-size: 16px"><br>what didn't :(
+            <li><p class = "whitetext normal_list">- original goal was to use the capacitance pad as like a drawing pad, but mainly only mapped along the diagonal </li>
+            <li><p class = "whitetext normal_list">- volume sensor was supperrrrrr sensitive so very finicky light results </p></li>
+        </p>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+  <!-- Load main sketch -->
+  <!--script type="text/javascript" src="/DemoScene/shader.js"></script-->
+  <script src = "assets/js/girlypop.js"></script>
+  <script src = "assets/js/menu_all.js"></script>
+
+
+</html>
