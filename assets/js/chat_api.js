@@ -1,5 +1,4 @@
 let osc; // Single oscillator
-require('dotenv').config();
 
 function initOscillator() {
     if (!osc) {
@@ -27,8 +26,10 @@ reqbut.onclick = function () {
         document.getElementById('midi-note5').value
     ];
 
-    //set const apiKey to user variable entitled "OPENAI_API_KEY"
-    const apiKey = process.env.OPENAI_API_KEY;
+    var apiKey = "";
+    fetch('../api_key.txt')
+        .then(response => response.text())
+        .then(text => apiKey = text);
 
     // Initialize oscillator before making the API request
     initOscillator();

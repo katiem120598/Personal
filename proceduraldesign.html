@@ -17,15 +17,48 @@
 </head>
 
 <body >
-    <!-- set an image as the background to take up the whole page and center it-->
-    <div id = "main" class="pinkcontainer">
-        <!-- add in girly pop text-->
-        <h1 style="text-align: center;">under construction!!<br>no peeking!!!</h1>
-        <div class = "background-image">
-            <img src="assets/images/construction.png" alt="background" class = "background-image" style = "height: 60vh; width: auto;">
-        </div>
-    </div>
+    <navbar class = "navbar-contents">
+        <!--START: Navbar-->
+            <div class = "home-button">
+                <a href = "index.html#main">
+                    <img class = logo src="assets/images/explosion_bubble.png" alt="" width="150">
+                    <span class = "home-button-text">katie <3</span> 
+                </a>
+            </div>
     
+            <div>
+                <button class="dropdown-button menu-container" style = "display:block" onclick="handleMenu()">&#9776;</button>
+                <ul class="navlist" style="display:none">
+                    <li><a href="index.html#about">about</a></li>
+                    <li><a href="proceduraldesign.html">portfolio</a></li>
+                    <li><a href = "ps70.html">ps70</a></li>
+                </ul>
+            </div>
+    </navbar>
+
+    <!-- START: Main -->
+    <div id = "main" class="pinkcontainer">
+        <a href="girlypop.html" class="dynamic-figure" style="transform: rotate(-10deg); bottom: 15vh; left:20vw; width: 25vw; height: 25vh">
+            <img src="assets/images/girlypop_pics.png" class="dynamic-image">
+            <h1 class="image-caption" style="font-size:2vw; font-weight: 200; transform: rotate(-18deg) translate(-2vw, -24vh)">girlypop pics</h1>
+        </a>
+
+        <a href="drawingapp copy.html" class="dynamic-figure" style="transform: rotate(20deg); bottom: 17vh; right:15vw; width: 23vw;height: 27vh">
+            <img src="assets/images/darwing_app.png" class="dynamic-image">
+            <h1 class="image-caption" style="font-size:2vw; font-weight: 200; transform: rotate(0deg) translate(0vw, -2vh)">drawing app!!!</h1>
+        </a>
+
+        <a href="shader.html" class="dynamic-figure" style="transform: rotate(10deg); top:30vh; right:10vw; width: 19vw;height: 20vh">
+            <img src="assets/images/sound_waves.png" class="dynamic-image">
+            <h1 class="image-caption" style="font-size:2vw; font-weight: 200; transform: rotate(0deg) translate(0vw, -2vh)">~sound waves~</h1>
+        </a>
+
+        <a href="flowjockey" class="dynamic-figure" style="transform: rotate(-2deg); top: 15vh; left:15vw; width: 40vw;height: 30vh">
+            <img src="assets/images/flow_jockey.png" class="dynamic-image">
+            <h1 class="image-caption" style="font-size:2vw; font-weight: 200; transform: rotate(0deg) translate(0vw, -2vh)">FlowJockey</h1>
+        </a>
+
+    </div>
     <!-- END: Main Page -->
 
     <!-- START: Scripts -->

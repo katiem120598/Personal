@@ -1,8 +1,12 @@
-require('dotenv').config();
 const reqbut = document.getElementById('button-request');
 const dalleEndpoint = 'https://api.openai.com/v1/images/generations';
 const imgContainer=document.getElementById('image-container');
 const reqStatus = document.getElementById('request-status');
+//read in the contents of api_key.txt
+var apiKey = "";
+fetch('../api_key.txt')
+    .then(response => response.text())
+    .then(text => apiKey = text);
 
 reqbut.onclick = function(){
     reqStatus.innerHTML = "performing request...";
@@ -10,7 +14,7 @@ reqbut.onclick = function(){
     const prompt = document.getElementById('text-prompt').value;
     var getkey = document.getElementById('api-key').value;
     if (getkey==="friends&fam"){
-        getkey= process.env.OPENAI_API_KEY;
+        getkey= apiKey;
     }
     const imgradios = document.getElementsByName('image-size');
     const googleradios = document.getElementsByName('googlyeyes');
