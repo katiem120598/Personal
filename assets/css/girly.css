@@ -1,16 +1,28 @@
 /*BODY CLASSES*/
+/*html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; \
+}
+*/
+
 .pinkcontainer {
     margin: 0;
     padding: 0;
-    width:100%;
-    min-height:100vh;
+    width: 100%;
+    min-height: 100vh; /* Ensures it covers the viewport initially */
     background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow-y: auto;
+    position: relative; /* Ensure positioned elements inside are relative to it */
+    overflow: auto; /* Allow scrolling inside the container */
 }
+
+
 .blackcontainer {
     margin: 0;
     padding: 0;
@@ -495,17 +507,25 @@ html, body {
     padding: 0;
 }
 
-.dynamic-figure {
-    position: absolute;
-    text-align: center;
-    transform: rotate(15deg); /* Rotate the entire figure, including the image and caption */
+.image-wrapper {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    width: 100vw; /* Match the viewport width */
+    height: 100vh; /* Match the viewport height */
+    overflow: hidden; /* Prevents any overflow issues */
 }
 
 .dynamic-image {
-    width: 100%; /* Image takes the full width of the figure */
-    height: 100%; /* Maintain aspect ratio */
-    display: block; /* Ensure image behaves like a block element */
+    max-width: 90vw; /* Restrict image to viewport width */
+    max-height: 90vh; /* Restrict image to viewport height */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure full image visibility */
+    display: block; /* Block-level for predictable sizing */
 }
+
+
 
 .normal_list{
     font-size: 12px;
