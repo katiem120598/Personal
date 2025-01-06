@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const referenceImage = document.querySelector("img.reference-image");
     const dependentImages = document.querySelectorAll("img.dependent-image");
     const fillerElements = document.querySelectorAll(".filler-image");
-    const hoverTextElements = document.querySelectorAll(".hover-text");
+    const fillerContainers = document.querySelectorAll(".filler-container");
 
     const updatePositions = () => {
         if (!referenceImage) return;
@@ -28,46 +28,44 @@ document.addEventListener("DOMContentLoaded", function () {
             height: referenceImage.style.height,
         });
 
-        // Update filler elements and their corresponding hover texts
         fillerElements.forEach((fillerElement, index) => {
             const initialTop = parseFloat(fillerElement.dataset.top || 0); // % of reference height
             const initialLeft = parseFloat(fillerElement.dataset.left || 0); // % of reference width
             const initialSize = parseFloat(fillerElement.dataset.size || 0.2); // % of reference width
-
-            // Preserve aspect ratio for filler element
-            const fillerNaturalWidth = fillerElement.naturalWidth || fillerElement.videoWidth;
-            const fillerNaturalHeight = fillerElement.naturalHeight || fillerElement.videoHeight;
+        
+            // Ensure media is fully loaded before calculating dimensions
+            const fillerNaturalWidth = fillerElement.naturalWidth || fillerElement.videoWidth || 1;
+            const fillerNaturalHeight = fillerElement.naturalHeight || fillerElement.videoHeight || 1;
             const aspectRatio = fillerNaturalWidth / fillerNaturalHeight;
-
-            // Calculate dimensions
+        
+            // Calculate dimensions based on reference bounds
             const calculatedWidth = initialSize * refBounds.width;
             const calculatedHeight = calculatedWidth / aspectRatio;
-
-            // Calculate positions
+        
+            // Calculate positions based on reference bounds
             const absoluteTop = refBounds.top + (initialTop / 100) * refBounds.height;
             const absoluteLeft = refBounds.left + (initialLeft / 100) * refBounds.width;
-
-            // Apply styles to the filler element
-            fillerElement.style.width = `${calculatedWidth}px`;
-            fillerElement.style.height = `${calculatedHeight}px`;
-            fillerElement.style.position = "absolute";
-            fillerElement.style.top = `${absoluteTop}px`;
-            fillerElement.style.left = `${absoluteLeft}px`;
-
-            // Apply styles to the hover text if it exists
-            const hoverText = hoverTextElements[index];
-            const textHeight = hoverText.offsetHeight; // Get the actual height of the hover text element
-            const textWidth = calculatedWidth -30;
-            hoverText.style.width = `${calculatedWidth-30}px`;
-            hoverText.style.height = `auto`; // Allow the height to adjust dynamically based on content
-            hoverText.style.position = "absolute";
-            hoverText.style.top = `${absoluteTop + (calculatedHeight - textHeight) / 2}px`; // Center vertically
-            hoverText.style.left = `${absoluteLeft + (calculatedWidth-textWidth) / 2}px`; // Center horizontally
-            //hoverText.style.transform = "translate(-50%, -50%)";
-            hoverText.style.fontSize = `${0.02 * referenceImage.clientHeight}px`; // Set the font size based on the reference image width;
-            hoverText.style.textAlign = "center";
-            hoverText.style.pointerEvents = "none"; // Ensure the text doesn't interfere with hover functionality
+        
+            // Match the container
+            const fillerContainer = fillerContainers[index];
+            if (!fillerContainer) {
+                console.warn(`No corresponding container for filler element at index ${index}`);
+                return;
+            }
+        
+            // Apply styles to the filler container
+            Object.assign(fillerContainer.style, {
+                width: `${calculatedWidth}px`,
+                height: `${calculatedHeight}px`,
+                position: "absolute",
+                top: `${absoluteTop}px`,
+                left: `${absoluteLeft}px`
+            });
+        
+            // Make sure the fillerElement is styled correctly
+            fillerContainer.appendChild(fillerElement); // Ensure element is inside the container
         });
+        
 
         // Position dependent images
         let cumulativeHeight = -0.39 * referenceImage.clientHeight;

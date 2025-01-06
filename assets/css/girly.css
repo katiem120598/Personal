@@ -531,26 +531,49 @@ html, body {
 }
 
 .hover-text {
-    z-index: 500;
-    pointer-events: none; /* Allow clicks to pass through */
+    position: absolute; /* Ensures it stays inside the container */
+    color: white; /* Adjust text color */
+    text-align: center; /* Centers text within itself */
+    opacity: 0; /* Initially hidden */
+    z-index: 500; /* Ensures it is above other elements */
+    padding: 20px;
+    width: 90%; /* Ensures the text spans the container width */
+    height: 80%; /* Use full height of the container */
+    display: flex; /* Enables Flexbox for centering */
+    align-items: center; /* Centers text vertically */
+    justify-content: center; /* Centers text horizontally */
+    white-space: normal; /* Allows wrapping */
+    overflow: visible; /* No clipping */
+    font-size: clamp(8px, 1.5vw, 16px);
+    line-height: 1.2; /* Adjust line spacing */
 }
 
 
+.filler-container {
+    position: relative; /* Ensure positioned context for children */
+    overflow: hidden;  /* Optional: Clip content if necessary */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-.filler-image + .hover-text {
-    visibility: hidden; /* Default: hide the hover-text */
-    opacity: 0; /* Default: fully transparent */
+.filler-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Adjust this based on desired scaling behavior */
+    position: absolute; /* Ensure it stays within its container */
+    top: 0;
+    left: 0;
+}
+
+.filler-container:hover .hover-text {
+    opacity: 1; /* Make the hover text visible when the container is hovered */
 }
 
 .filler-image.hovered {
     filter: grayscale(100%) saturate(50%) brightness(20%);
 }
 
-.filler-image.hovered + .hover-text {
-    visibility: visible;
-    opacity: 1;
-    color: rgba(255,255,255,1);
-}
 
 .normal_list{
     font-size: 12px;
