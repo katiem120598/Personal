@@ -2,98 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>katie mueller</title>
+    <title>Katie Mueller</title>
     <meta name="description" content="portfolio, projects, work">
     <meta name="keywords" content="portfolio, personal, projects, work, katie mueller">
-    <meta name="author" content="katie mueller">
-    <!-- !use this section if you want to add an icon for the website! link rel="icon" type="image/png" href="assets/images/favicon.png"-->
+    <meta name="author" content="Katie Mueller">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- START: Styles -->
-    <!-- Google Fonts -->
+
+    <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="assets/css/girly.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- END: Styles -->
 </head>
 
-<body >
-    <navbar class = "navbar-contents">
-        <!--START: Navbar-->
-            <div class = "home-button">
-                <a href = "index.html#main">
-                    <img class = logo src="assets/images/explosion_bubble.png" alt="" width="150">
-                    <span class = "home-button-text">katie <3</span> 
-                </a>
-            </div>
-    
-            <div>
-                <button class="dropdown-button menu-container" style = "display:block" onclick="handleMenu()">&#9776;</button>
-                <ul class="navlist" style="display:none">
-                    <li><a href="index.html#about">about</a></li>
-                    <li><a href="proceduraldesign.html">portfolio</a></li>
-                    <li><a href = "ps70.html">ps70</a></li>
-                </ul>
-            </div>
+<body>
+    <navbar class="navbar-contents">
+        <!-- Navbar -->
+        <div class="home-button">
+            <a href="index.html#main">
+                <img class="logo" src="assets/images/explosion_bubble.png" alt="Logo" width="150">
+                <span class="home-button-text">Katie <3</span>
+            </a>
+        </div>
+        <div>
+            <button class="dropdown-button menu-container" onclick="handleMenu()">&#9776;</button>
+            <ul class="navlist" style="display:none">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="proceduraldesign.html">Portfolio</a></li>
+                <li><a href="ps70.html">PS70</a></li>
+            </ul>
+        </div>
     </navbar>
 
-    <!-- START: Main -->
+    <!-- Main Section -->
     <div id="main" class="pinkcontainer">
         <div class="image-wrapper">
-            <!-- The reference image -->
-            <img src="assets/images/personal_favs_scrap.png" class="dynamic-image reference-image" style = "z-index: 100;">
-    
-            <!-- Other images positioned relative to the reference image -->
-            <a href = "personal_favs.html"><img src="assets/images/personal_favs.png" class="dynamic-image dependent-image"></a>
-            <a href = "personal_favs.html"><img src="assets/images/web_apps.png" class="dynamic-image dependent-image"></a>
-            <a href = "index.html"><img src="assets/images/interactive_exhiits.png" class="dynamic-image dependent-image"></a>
-            <a href = "index.html"><img src="assets/images/digital_fab.png" class="dynamic-image dependent-image"></a>
-            <a href = "index.html"><img src="assets/images/arch.png" class="dynamic-image dependent-image"></a>
-            <div>
-                
-            </div>
+            <!-- Reference Canvas -->
+            <canvas id="reference-canvas" style="position: absolute; top: 0; left: 0;"></canvas>
+
+            <!-- The Reference Image -->
+            <img src="assets/images/personal_favs_scrap.png" class="dynamic-image reference-image" alt="Reference Image" style="z-index: 100;">
+
+            <!-- Dependent Images -->
+            <a href="personal_favs.html">
+                <img src="assets/images/personal_favs.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+            <a href="personal_favs.html">
+                <img src="assets/images/web_apps.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+            <a href="index.html">
+                <img src="assets/images/interactive_exhiits.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+            <a href="index.html">
+                <img src="assets/images/digital_fab.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+            <a href="index.html">
+                <img src="assets/images/arch.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+
+            <!-- Filler Images -->
+            <a href="ps70_final.html">
                 <video autoplay muted loop class="filler-image" data-top="20" data-left="12" data-size="0.26">
                     <source src="assets/images/updated_array.MP4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+            </a>
+            <a href="drawingapp_copy.html">
                 <video autoplay muted loop class="filler-image" data-top="27.5" data-left="59" data-size="0.29">
-                    <source src="assets/images/drawing_app.MP4" type="video/mp4">
+                    <source src="assets/images/drawing_app.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+            </a>
+            <a href="flowjockey.html">
                 <video autoplay muted loop class="filler-image" data-top="61" data-left="58" data-size="0.35">
-                    <source src="assets/images/flowjocky.MP4" type="video/mp4">
+                    <source src="assets/images/flowjocky.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-            <div>
-                <a href="ps70_final.html" target = "_blank" class="filler-link"></a>
-                <p class = "filler-overlay"> a 3d led pixel array!!! uses touchdesigner, python, arduino, and the wled api to create an audiovisual light show... has several different modes based on various elements of the music </p>
-            
-                <a href="drawingapp copy.html" target = "_blank"class="filler-link"></a>
-                <p class = "filler-overlay"> my drawing app <3 this app allows users to draw whatever shapes they want on the canvas and watch as those shapes move around, bump into each other, and get destroyed... users also have the option to delete shapes and/or change their colors </p>
-            
-                <a href="flowjockey.html" target = "_blank"class="filler-link"></a>
-                <p class = "filler-overlay"> flowJockey!!! this web app involves three different screens - one for viewing, one for moderating, and one for drawing. this app works using a websocket - this means multiple users can draw at a time!!! </p>
-            </div>
+            </a>
+        </div>
     </div>
 
-    
-    
-    
-    
-    <!-- END: Main Page -->
-
-    <!-- START: Scripts -->
-
-    <script src = "assets/js/girlypop.js"></script> 
-    <script src = "assets/js/pinkexplode.js"></script> 
-    <script src = "assets/js/menu_all.js"></script>
-    <script src = "assets/js/ref_image.js"></script>
-    
-    
-    <!-- END: Scripts -->
-
-
+    <!-- Scripts -->
+    <script src="assets/js/girlypop.js"></script>
+    <script src="assets/js/pinkexplode.js"></script>
+    <script src="assets/js/menu_all.js"></script>
+    <script src="assets/js/ref_image.js"></script>
+    <script src="assets/js/filler_links.js"></script>
 
 </body>
-
 </html>
