@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const referenceImage = document.querySelector("img.reference-image");
     const dependentImages = document.querySelectorAll("img.dependent-image");
-    const fillerElements = document.querySelectorAll(".filler-image"); // Includes all filler images/videos
-    const fillerLinks = document.querySelectorAll(".filler-link");
+    const fillerElements = document.querySelectorAll(".filler-image");
+    const hoverTextElements = document.querySelectorAll(".hover-text");
 
     const updatePositions = () => {
         if (!referenceImage) return;
@@ -28,11 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
             height: referenceImage.style.height,
         });
 
-        // Update filler elements (image or video) and their corresponding filler links
+        // Update filler elements and their corresponding hover texts
         fillerElements.forEach((fillerElement, index) => {
-            const refBounds = referenceImage.getBoundingClientRect();
-
-            // Parse initial positions and size from data attributes
             const initialTop = parseFloat(fillerElement.dataset.top || 0); // % of reference height
             const initialLeft = parseFloat(fillerElement.dataset.left || 0); // % of reference width
             const initialSize = parseFloat(fillerElement.dataset.size || 0.2); // % of reference width
@@ -57,21 +54,20 @@ document.addEventListener("DOMContentLoaded", function () {
             fillerElement.style.top = `${absoluteTop}px`;
             fillerElement.style.left = `${absoluteLeft}px`;
 
-            // Apply the same styles to the corresponding filler link
-            if (fillerLinks[index]) {
-                const fillerLink = fillerLinks[index];
-                fillerLink.style.width = `${calculatedWidth}px`;
-                fillerLink.style.height = `${calculatedHeight}px`;
-                fillerLink.style.position = "absolute";
-                fillerLink.style.top = `${absoluteTop}px`;
-                fillerLink.style.left = `${absoluteLeft}px`;
-                fillerLink.style.zIndex = "102"; // Ensure links are above filler images
+            // Apply styles to the hover text if it exists
+            if (hoverTextElements[index]) {
+                const hoverText = hoverTextElements[index];
+                const textHeight = hoverText.offsetHeight; // Get the actual height of the hover text element
+                hoverText.style.width = `${calculatedWidth-30}px`;
+                hoverText.style.height = `auto`; // Allow the height to adjust dynamically based on content
+                hoverText.style.position = "absolute";
+                hoverText.style.top = `${absoluteTop + (calculatedHeight - textHeight) / 2}px`; // Center vertically
+                hoverText.style.left = `${absoluteLeft + calculatedWidth / 2}px`; // Center horizontally
+                hoverText.style.transform = "translate(-50%, -50%)";
+                hoverText.style.fontSize = `${0.02 * referenceImage.clientHeight}px`; // Set the font size based on the reference image width;
+                hoverText.style.textAlign = "center";
+                hoverText.style.pointerEvents = "none"; // Ensure the text doesn't interfere with hover functionality
             }
-
-            console.log("Filler Element and Link Updated:", {
-                fillerElementTag: fillerElement.tagName,
-                linkPosition: fillerLinks[index]?.style,
-            });
         });
 
         // Position dependent images

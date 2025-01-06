@@ -526,8 +526,23 @@ html, body {
     display: block; 
 }
 
+.hover-text{
+    z-index: 500;
+}
+
+.filler-image + .hover-text {
+    visibility: hidden; /* Default: hide the hover-text */
+    opacity: 0; /* Default: fully transparent */
+}
+
 .filler-image.hovered {
-    opacity: 0.2; /* Set transparency to 20% */
+    filter: grayscale(100%) saturate(50%) brightness(20%);
+}
+
+.filler-image.hovered + .hover-text{
+    visibility: visible;
+    opacity: 1;
+    color: rgba(255,255,255,1);
 }
 
 .normal_list{
