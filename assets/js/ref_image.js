@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const referenceImage = document.querySelector("img.reference-image");
     const dependentImages = document.querySelectorAll("img.dependent-image");
-    const fillerElements = document.querySelectorAll(".filler-image");
     const fillerContainers = document.querySelectorAll(".filler-container");
+    const fillerLinks = document.querySelectorAll(".filler-link");
 
     const updatePositions = () => {
         if (!referenceImage) return;
@@ -28,46 +28,56 @@ document.addEventListener("DOMContentLoaded", function () {
             height: referenceImage.style.height,
         });
 
-        fillerElements.forEach((fillerElement, index) => {
-            const initialTop = parseFloat(fillerElement.dataset.top || 0); // % of reference height
-            const initialLeft = parseFloat(fillerElement.dataset.left || 0); // % of reference width
-            const initialSize = parseFloat(fillerElement.dataset.size || 0.2); // % of reference width
-        
-            // Ensure media is fully loaded before calculating dimensions
-            const fillerNaturalWidth = fillerElement.naturalWidth || fillerElement.videoWidth || 1;
-            const fillerNaturalHeight = fillerElement.naturalHeight || fillerElement.videoHeight || 1;
-            const aspectRatio = fillerNaturalWidth / fillerNaturalHeight;
-        
-            // Calculate dimensions based on reference bounds
-            const calculatedWidth = initialSize * refBounds.width;
-            const calculatedHeight = calculatedWidth / aspectRatio;
-        
-            // Calculate positions based on reference bounds
-            const absoluteTop = refBounds.top + (initialTop / 100) * refBounds.height;
-            const absoluteLeft = refBounds.left + (initialLeft / 100) * refBounds.width;
-        
-            // Match the container
-            const fillerContainer = fillerContainers[index];
-            if (!fillerContainer) {
-                console.warn(`No corresponding container for filler element at index ${index}`);
+        // Position and size filler containers relative to the reference image
+        fillerContainers.forEach((container, index) => {
+            const fillerElement = container.querySelector(".filler-image");
+
+            if (!fillerElement) {
+                console.warn("No filler image found in container");
                 return;
             }
-        
-            // Apply styles to the filler container
-            Object.assign(fillerContainer.style, {
-                width: `${calculatedWidth}px`,
-                height: `${calculatedHeight}px`,
+
+            const topPercentage = parseFloat(container.dataset.top || 0); // % of reference height
+            const leftPercentage = parseFloat(container.dataset.left || 0); // % of reference width
+            const widthPercentage = parseFloat(container.dataset.width || 0.2); // % of reference width
+            const heightPercentage = parseFloat(container.dataset.height || 0.2); // % of reference height
+
+            const absoluteTop = refBounds.top + (topPercentage / 100) * refBounds.height;
+            const absoluteLeft = refBounds.left + (leftPercentage / 100) * refBounds.width;
+            const absoluteWidth = (widthPercentage / 100) * refBounds.width;
+            const absoluteHeight = (heightPercentage / 100) * refBounds.height;
+
+            Object.assign(container.style, {
                 position: "absolute",
                 top: `${absoluteTop}px`,
-                left: `${absoluteLeft}px`
+                left: `${absoluteLeft}px`,
+                width: `${absoluteWidth}px`,
+                height: `${absoluteHeight}px`,
             });
-        
-            // Make sure the fillerElement is styled correctly
-            fillerContainer.appendChild(fillerElement); // Ensure element is inside the container
-        });
-        
 
-        // Position dependent images
+            // Ensure filler image covers the container
+            Object.assign(fillerElement.style, {
+                width: "100%",
+                height: "100%",
+                objectFit: "cover", // Ensures the video scales correctly
+            });
+
+            // Update the associated filler link if it exists
+            if (fillerLinks[index]) {
+                const link = fillerLinks[index];
+                Object.assign(link.style, {
+                    position: "absolute",
+                    top: `${absoluteTop}px`,
+                    left: `${absoluteLeft}px`,
+                    width: `${absoluteWidth}px`,
+                    height: `${absoluteHeight}px`,
+                    zIndex: "101", // Ensure links are above filler images
+                    background: "rgba(0, 0, 0, 0)", // Ensure links are visually transparent
+                });
+            }
+        });
+
+        // Position dependent images relative to each other
         let cumulativeHeight = -0.39 * referenceImage.clientHeight;
         let cumulativeWidth = 0;
 
@@ -82,11 +92,43 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    const handleImageLoad = () => {
-        if (referenceImage.complete) {
+    const handleVideoMetadataLoad = (video) => {
+        if (video.readyState >= 2) {
+            console.log(`Video metadata loaded for ${video.src}`);
             updatePositions();
         } else {
-            referenceImage.addEventListener("load", updatePositions);
+            video.addEventListener("loadedmetadata", () => {
+                console.log(`Video metadata event fired for ${video.src}`);
+                updatePositions();
+            });
+        }
+    };
+
+    const handleImageLoad = () => {
+        if (referenceImage.complete && referenceImage.naturalWidth > 0) {
+            console.log("Reference Image Loaded (Complete)");
+            updatePositions();
+
+            // Ensure all videos are ready
+            fillerContainers.forEach((container) => {
+                const video = container.querySelector("video.filler-image");
+                if (video) {
+                    handleVideoMetadataLoad(video);
+                }
+            });
+        } else {
+            referenceImage.addEventListener("load", () => {
+                console.log("Reference Image Loaded (Event)");
+                updatePositions();
+
+                // Ensure all videos are ready
+                fillerContainers.forEach((container) => {
+                    const video = container.querySelector("video.filler-image");
+                    if (video) {
+                        handleVideoMetadataLoad(video);
+                    }
+                });
+            });
         }
     };
 
@@ -100,10 +142,10 @@ document.addEventListener("DOMContentLoaded", function () {
         resizeObserver.observe(referenceImage);
     }
 
-    // Handle initial layout setup
+    // Ensure initial layout setup
     handleImageLoad();
 
-    // Fallback: Also listen to window resize for additional updates
+    // Listen for window resize events
     window.addEventListener("resize", () => {
         console.log("Window resize triggered");
         updatePositions();
