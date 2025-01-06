@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dependentImages = document.querySelectorAll("img.dependent-image");
     const fillerElements = document.querySelectorAll(".filler-image"); // Includes all filler images/videos
     const fillerLinks = document.querySelectorAll(".filler-link"); // Links associated with filler images
+    const fillerOverlays = document.querySelectorAll(".filler-overlay"); // Overlays associated with filler images
 
     const updatePositions = () => {
         if (referenceImage) {
@@ -75,6 +76,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     link.style.height = `${calculatedHeight}px`;
                     link.style.zIndex = "101"; // Ensure links are above filler images
                     link.style.background = "rgba(0, 0, 0, 0)"; // Ensure links are visually transparent
+                }
+
+                if (fillerOverlays[index]) {
+                    const overlay = fillerOverlays[index];
+                    overlay.style.position = "absolute";
+                    overlay.style.top = `${absoluteTop}px`;
+                    overlay.style.left = `${absoluteLeft}px`;
+                    overlay.style.width = `${calculatedWidth}px`;
+                    overlay.style.height = `${calculatedHeight}px`;
+                    overlay.style.zIndex = "1"; // Ensure overlays are above filler images
+                    overlay.style.background = "rgba(0, 0, 0, 0)"; // Ensure overlays are initially transparent
+                
+                    // Dynamically adjust font size based on reference image height
+                    const fontSize = `${0.015 * refBounds.height}px`; // Adjust the multiplier (0.02) as needed
+                    overlay.style.fontSize = fontSize;
+                
+                    console.log("Filler Overlay Font Updated:", {
+                        fontSize: overlay.style.fontSize,
+                        top: overlay.style.top,
+                        left: overlay.style.left,
+                        width: overlay.style.width,
+                        height: overlay.style.height,
+                    });
                 }
             });
         }
