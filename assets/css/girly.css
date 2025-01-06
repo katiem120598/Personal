@@ -508,21 +508,30 @@ html, body {
 }
 
 .image-wrapper {
-    display: flex; /* Enables flexbox */
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically */
-    width: 100vw; /* Match the viewport width */
-    height: 100vh; /* Match the viewport height */
-    overflow: hidden; /* Prevents any overflow issues */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; 
 }
 
 .dynamic-image {
-    max-width: 90vw; /* Restrict image to viewport width */
-    max-height: 90vh; /* Restrict image to viewport height */
-    width: auto; /* Maintain aspect ratio */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure full image visibility */
-    display: block; /* Block-level for predictable sizing */
+    max-width: 80vw; 
+    max-height: 90vh; 
+    transform: translate(9vw);
+    width: auto; 
+    height: auto; 
+    object-fit: contain; 
+    display: block; 
+}
+
+.filler-link {
+    background: rgba(0, 0, 0, 0); /* Fully transparent */
+    display: block; /* Ensure the links are block-level elements */
+    cursor: pointer; /* Show a pointer cursor for clarity */
+    position: absolute; /* Positioning will be set dynamically by JS */
+    z-index: 101; /* Make sure links are above filler images */
 }
 
 
