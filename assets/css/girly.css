@@ -526,9 +526,16 @@ html, body {
     display: block; 
 }
 
-.hover-text{
-    z-index: 500;
+.reference-image{
+    pointer-events: none;
 }
+
+.hover-text {
+    z-index: 500;
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+
 
 .filler-image + .hover-text {
     visibility: hidden; /* Default: hide the hover-text */
@@ -539,7 +546,7 @@ html, body {
     filter: grayscale(100%) saturate(50%) brightness(20%);
 }
 
-.filler-image.hovered + .hover-text{
+.filler-image.hovered + .hover-text {
     visibility: visible;
     opacity: 1;
     color: rgba(255,255,255,1);

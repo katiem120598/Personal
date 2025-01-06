@@ -55,19 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
             fillerElement.style.left = `${absoluteLeft}px`;
 
             // Apply styles to the hover text if it exists
-            if (hoverTextElements[index]) {
-                const hoverText = hoverTextElements[index];
-                const textHeight = hoverText.offsetHeight; // Get the actual height of the hover text element
-                hoverText.style.width = `${calculatedWidth-30}px`;
-                hoverText.style.height = `auto`; // Allow the height to adjust dynamically based on content
-                hoverText.style.position = "absolute";
-                hoverText.style.top = `${absoluteTop + (calculatedHeight - textHeight) / 2}px`; // Center vertically
-                hoverText.style.left = `${absoluteLeft + calculatedWidth / 2}px`; // Center horizontally
-                hoverText.style.transform = "translate(-50%, -50%)";
-                hoverText.style.fontSize = `${0.02 * referenceImage.clientHeight}px`; // Set the font size based on the reference image width;
-                hoverText.style.textAlign = "center";
-                hoverText.style.pointerEvents = "none"; // Ensure the text doesn't interfere with hover functionality
-            }
+            const hoverText = hoverTextElements[index];
+            const textHeight = hoverText.offsetHeight; // Get the actual height of the hover text element
+            const textWidth = calculatedWidth -30;
+            hoverText.style.width = `${calculatedWidth-30}px`;
+            hoverText.style.height = `auto`; // Allow the height to adjust dynamically based on content
+            hoverText.style.position = "absolute";
+            hoverText.style.top = `${absoluteTop + (calculatedHeight - textHeight) / 2}px`; // Center vertically
+            hoverText.style.left = `${absoluteLeft + (calculatedWidth-textWidth) / 2}px`; // Center horizontally
+            //hoverText.style.transform = "translate(-50%, -50%)";
+            hoverText.style.fontSize = `${0.02 * referenceImage.clientHeight}px`; // Set the font size based on the reference image width;
+            hoverText.style.textAlign = "center";
+            hoverText.style.pointerEvents = "none"; // Ensure the text doesn't interfere with hover functionality
         });
 
         // Position dependent images
