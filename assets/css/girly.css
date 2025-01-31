@@ -544,7 +544,7 @@ html, body {
     justify-content: center; /* Centers text horizontally */
     white-space: normal; /* Allows wrapping */
     overflow: visible; /* No clipping */
-    font-size: clamp(6px, 1vw, 14px);
+    font-size: clamp(6px, 1vw, 12px);
     line-height: 1.2; /* Adjust line spacing */
 }
 
