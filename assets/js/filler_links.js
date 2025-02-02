@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const setupCanvas = () => {
         canvas.width = referenceImage.naturalWidth;
         canvas.height = referenceImage.naturalHeight;
-        //ctx.drawImage(referenceImage, 0, 0, canvas.width, canvas.height);
+        // ctx.drawImage(referenceImage, 0, 0, canvas.width, canvas.height);
+        console.log("Canvas setup completed with width:", canvas.width, "and height:", canvas.height);
     };
 
     // Check if a given coordinate on the canvas is transparent
@@ -23,7 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const y = ((event.clientY - rect.top) / rect.height) * canvas.height;
 
         fillerElements.forEach((fillerElement) => {
-            const fillerRect = fillerElement.getBoundingClientRect();
+            const fillerRect = {
+                top: fillerElement.offsetTop,
+                left: fillerElement.offsetLeft,
+                right: fillerElement.offsetLeft + fillerElement.offsetWidth,
+                bottom: fillerElement.offsetTop + fillerElement.offsetHeight
+            };
+
             const isInsideFiller =
                 event.clientX >= fillerRect.left &&
                 event.clientX <= fillerRect.right &&
@@ -39,14 +46,16 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const handleImageLoad = () => {
+        referenceImage.addEventListener("load", setupCanvas);
         if (referenceImage.complete) {
             setupCanvas();
-        } else {
-            referenceImage.addEventListener("load", setupCanvas);
         }
     };
 
     document.getElementById("main").addEventListener("mousemove", handleMouseMove);
 
     handleImageLoad();
+
+    // Debugging logs (remove if unnecessary)
+    console.log("Script initialized.");
 });

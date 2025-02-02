@@ -17,6 +17,9 @@
 </head>
 
 <body >
+    <div id="preloader">
+        <h1 id="loading-text">loading</h1>
+    </div>
     <navbar class = "navbar-contents">
         <!--START: Navbar-->
             <div class = "home-button">
@@ -29,6 +32,7 @@
             <div>
                 <button class="dropdown-button menu-container" style = "display:block" onclick="handleMenu()">&#9776;</button>
                 <ul class="navlist" style="display:none">
+                    <li><a href = "index.html">home</a></li>
                     <li><a href="index.html#about">about</a></li>
                     <li><a href="proceduraldesign.html">portfolio</a></li>
                     <li><a href = "ps70.html">ps70</a></li>
@@ -38,6 +42,7 @@
 
     <!-- START: Main -->
     <div id="main" class="pinkcontainer">
+
         <div class="image-wrapper">
             <!-- The reference image -->
             <img src="assets/images/portfolio_cover.png" class="dynamic-image reference-image" style = "z-index: 100;">
@@ -59,6 +64,7 @@
     <script src = "assets/js/pinkexplode.js"></script> 
     <script src = "assets/js/menu_all.js"></script>
     <script src = "assets/js/ref_image.js"></script>
+    <script src = "assets/js/preload.js"></script>
     
     
     <!-- END: Scripts -->
