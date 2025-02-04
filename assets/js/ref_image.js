@@ -78,12 +78,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Position dependent images relative to each other
+        
         let cumulativeHeight = -0.39 * referenceImage.clientHeight;
         let cumulativeWidth = 0;
 
         dependentImages.forEach((image) => {
             image.style.position = "relative";
-            image.style.top = `${cumulativeHeight}px`;
+            image.style.top = `${cumulativeHeight+0.05*referenceImage.clientHeight}px`;
             image.style.left = `-${cumulativeWidth + 0.005 * referenceImage.clientWidth}px`;
             image.style.height = `${0.17 * referenceImage.clientHeight}px`;
 

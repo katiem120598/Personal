@@ -14,6 +14,23 @@
     <link rel="stylesheet" href="assets/css/girly.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- END: Styles -->
+    <style>
+        /* Block all interactions on the page */
+        #main {
+            pointer-events: none; /* Disable clicks for everything inside */
+        }
+        
+        /* Re-enable interactions only for dependent images */
+        .dependent-image {
+            pointer-events: auto; /* Make dependent images clickable */
+        }
+        
+        /* Ensure dependent images' links are clickable */
+        .dependent-image a {
+            pointer-events: auto;
+        }
+        </style>
+        
 </head>
 
 <body >
@@ -44,15 +61,28 @@
     <div id="main" class="pinkcontainer">
 
         <div class="image-wrapper">
-            <!-- The reference image -->
-            <img src="assets/images/portfolio_cover.png" class="dynamic-image reference-image" style = "z-index: 100;">
-    
-            <!-- Other images positioned relative to the reference image -->
-            <a href = "personal_favs.html"><img src="assets/images/personal_favs.png" class="dynamic-image dependent-image"></a>
-            <a href = "web_apps.html"><img src="assets/images/web_apps.png" class="dynamic-image dependent-image"></a>
-            <a href = "index.html"><img src="assets/images/digital_fab.png" class="dynamic-image dependent-image"></a>
-            <a href = "interactive_exhibits.html"><img src="assets/images/interactive_exhibits.png" class="dynamic-image dependent-image"></a>
-            <a href = "index.html"><img src="assets/images/arch.png" class="dynamic-image dependent-image"></a>
+            <!-- Reference Canvas -->
+            <canvas id="reference-canvas" style="position: absolute; top: 0; left: 0; pointer-events:none;"></canvas>
+
+            <!-- The Reference Image -->
+            <img src="assets/images/portfolio_cover.png" class="dynamic-image reference-image" alt="Reference Image" style="z-index: 10000; pointer-events:none;">
+
+            <!-- Dependent Images -->
+            <a href="personal_favs.html" >
+                <img src="assets/images/personal_favs.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+            <a href="web_apps.html">
+                <img src="assets/images/web_apps.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+            <a href="digital_fabrication.html">
+                <img src="assets/images/digital_fab.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+            <a href="interactive_exhibits.html">
+                <img src="assets/images/interactive_exhibits.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
+            <a href="architecture.html">
+                <img src="assets/images/arch.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            </a>
         </div>
     </div>
     
