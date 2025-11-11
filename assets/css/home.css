@@ -17,7 +17,7 @@
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(225deg, #ffa7e9, #b5d1ff);
+    background: linear-gradient(225deg, #b5d1ff, #ffa7e9);
     display: flex;
     flex-direction: column;
     align-items: center;
