@@ -102,11 +102,11 @@ The site is configured for deployment using Replit's autoscale deployment target
 - **Technology**: Uses PageFlip.js library for realistic 3D page flipping effects
 - **Data Source**: Same `assets/data/projects.json` as Portfolio 2.0 (6 sample projects per category)
 - **Features**:
-  - **Physical tab dividers** on the right edge of the book for category navigation
-    - Paper texture backgrounds (cream/beige gradients) for authentic scrapbook look
-    - Washi tape overlays on tabs for cute decoration
-    - Stitching pattern on binding edge for physical attachment feel
-    - Tabs attached flush to book spine (no separation)
+  - **Tab dividers** on the right edge of the book for category navigation
+    - Pink gradient tabs that stick out from book edge
+    - Vertical text, clean rounded design
+    - Active tab highlights in darker pink
+    - Tabs positioned flush with book (integrated look)
   - Realistic page-turning animations with touch/swipe support
   - **4 projects per page** in cute 2x2 scrapbook grid layout
   - **Scrapbook decorations**: dashed borders, washi tape effects, sparkles, slight rotations
