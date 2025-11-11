@@ -476,6 +476,10 @@ a{
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -552,7 +556,7 @@ html, body {
 .role-content span {
     font-family: Work Sans, sans-serif;
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 400;
     color: #000000;
     line-height: 1.4;
     display: block;
