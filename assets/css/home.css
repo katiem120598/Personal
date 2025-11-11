@@ -481,3 +481,85 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+/* ROLES SECTION STYLING */
+.roles-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    min-height: 100vh;
+}
+
+.roles-title {
+    font-family: 'girlypop', sans-serif;
+    font-size: 2.5rem;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 60px;
+    z-index: 10;
+}
+
+.roles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .roles-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .roles-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+}
+
+.role-tile {
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+    background-image: url('../images/cloud.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.role-tile:hover {
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(1.1);
+}
+
+.role-content {
+    padding: 40px 30px;
+    text-align: center;
+    z-index: 2;
+}
+
+.role-content span {
+    font-family: Work Sans, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #000000;
+    line-height: 1.4;
+    display: block;
+}
+
+@media (max-width: 480px) {
+    .role-content span {
+        font-size: 1.1rem;
+    }
+}
