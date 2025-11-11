@@ -28,6 +28,54 @@
             "link": "drawingapp copy.html",
             "year": "2024"
           }
+        },
+        {
+          "id": "generative-patterns",
+          "title": "Generative Pattern Studio",
+          "thumbnail": "assets/images/flow_jockey.png",
+          "description": "procedural design tool for creating dynamic patterns",
+          "tags": ["p5.js", "generative", "web"],
+          "details": {
+            "fullDescription": "An interactive tool for creating generative art patterns using algorithms and randomness. Export as SVG or high-res PNG.",
+            "technologies": ["p5.js", "JavaScript", "SVG"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "shader-playground",
+          "title": "Shader Playground",
+          "thumbnail": "assets/images/drawing_app.png",
+          "description": "real-time GLSL shader editor and visualizer",
+          "tags": ["webgl", "shaders", "creative coding"],
+          "details": {
+            "fullDescription": "A web-based shader editor with live preview, featuring fragment and vertex shader support with interactive uniforms.",
+            "technologies": ["WebGL", "GLSL", "Three.js"],
+            "year": "2024"
+          }
+        },
+        {
+          "id": "music-viz-particles",
+          "title": "Particle Music Visualizer",
+          "thumbnail": "assets/images/flow_jockey.png",
+          "description": "audio-reactive particle system with custom physics",
+          "tags": ["audio", "particles", "webgl"],
+          "details": {
+            "fullDescription": "3D particle system that responds to music frequency data with customizable particle behaviors and visual effects.",
+            "technologies": ["Three.js", "Web Audio API", "JavaScript"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "creative-coding-toolkit",
+          "title": "Creative Coding Toolkit",
+          "thumbnail": "assets/images/drawing_app.png",
+          "description": "reusable library for creative coding projects",
+          "tags": ["library", "creative coding", "open source"],
+          "details": {
+            "fullDescription": "A collection of utility functions and helpers for creative coding, including noise generators, easing functions, and color utilities.",
+            "technologies": ["JavaScript", "p5.js", "NPM"],
+            "year": "2024"
+          }
         }
       ]
     },
@@ -45,16 +93,222 @@
             "technologies": ["Arduino", "C++", "3D Printing", "Laser Cutting"],
             "year": "2024"
           }
+        },
+        {
+          "id": "led-pixel-array",
+          "title": "3D LED Pixel Array",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "audiovisual 3D display with TouchDesigner",
+          "tags": ["led", "touchdesigner", "audio reactive"],
+          "details": {
+            "fullDescription": "A 3D LED array that creates audiovisual experiences using TouchDesigner, Python, and the WLED API. Responds to internal computer audio.",
+            "technologies": ["TouchDesigner", "Python", "Arduino", "WLED"],
+            "year": "2024"
+          }
+        },
+        {
+          "id": "smart-planter",
+          "title": "IoT Smart Planter",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "automated plant care system with sensors",
+          "tags": ["iot", "sensors", "arduino"],
+          "details": {
+            "fullDescription": "An automated plant care system that monitors soil moisture, light levels, and temperature, watering plants when needed.",
+            "technologies": ["ESP32", "C++", "Sensors", "Web Dashboard"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "cnc-projects",
+          "title": "CNC Furniture Designs",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "parametric furniture designed for CNC fabrication",
+          "tags": ["cnc", "fabrication", "parametric design"],
+          "details": {
+            "fullDescription": "A series of furniture pieces designed using parametric modeling and fabricated with CNC routing.",
+            "technologies": ["Rhino", "Grasshopper", "CNC Router"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "mechanical-clock",
+          "title": "Mechanical Clock",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "laser-cut wooden clock mechanism",
+          "tags": ["mechanical", "laser cutting", "woodworking"],
+          "details": {
+            "fullDescription": "A fully functional mechanical clock designed and fabricated using laser-cut wood components and 3D printed gears.",
+            "technologies": ["Fusion 360", "Laser Cutting", "3D Printing"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "robotic-arm",
+          "title": "6-Axis Robotic Arm",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "DIY robotic arm with inverse kinematics",
+          "tags": ["robotics", "kinematics", "arduino"],
+          "details": {
+            "fullDescription": "A 6-axis robotic arm controlled via Arduino with custom inverse kinematics solver for precise positioning.",
+            "technologies": ["Arduino", "Servos", "C++", "Python"],
+            "year": "2024"
+          }
         }
       ]
     },
     "interactive": {
       "title": "interactive installations",
-      "projects": []
+      "projects": [
+        {
+          "id": "responsive-environment",
+          "title": "Responsive Environment",
+          "thumbnail": "assets/images/flow_jockey.png",
+          "description": "interactive installation responding to movement",
+          "tags": ["installation", "sensors", "interactive"],
+          "details": {
+            "fullDescription": "An immersive installation that responds to visitors' movements using computer vision and projection mapping.",
+            "technologies": ["Processing", "Kinect", "Projection Mapping"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "sound-sculpture",
+          "title": "Interactive Sound Sculpture",
+          "thumbnail": "assets/images/drawing_app.png",
+          "description": "touch-sensitive musical installation",
+          "tags": ["sound", "touch", "installation"],
+          "details": {
+            "fullDescription": "A sculptural installation where touching different surfaces triggers unique sounds and musical sequences.",
+            "technologies": ["Capacitive Touch", "Max/MSP", "Arduino"],
+            "year": "2024"
+          }
+        },
+        {
+          "id": "light-field",
+          "title": "Light Field Installation",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "interactive LED installation with gesture control",
+          "tags": ["led", "gesture", "interactive"],
+          "details": {
+            "fullDescription": "A large-scale LED installation controlled by hand gestures, creating dynamic light patterns in response to movement.",
+            "technologies": ["Leap Motion", "LED Matrix", "Processing"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "data-visualization-wall",
+          "title": "Data Visualization Wall",
+          "thumbnail": "assets/images/flow_jockey.png",
+          "description": "real-time data displayed through physical pixels",
+          "tags": ["data viz", "physical computing", "led"],
+          "details": {
+            "fullDescription": "An interactive wall that displays real-time data from various sources using individually addressable LED pixels.",
+            "technologies": ["Raspberry Pi", "WS2812B LEDs", "Python", "API"],
+            "year": "2024"
+          }
+        },
+        {
+          "id": "mirror-portal",
+          "title": "Mirror Portal",
+          "thumbnail": "assets/images/drawing_app.png",
+          "description": "augmented reality mirror experience",
+          "tags": ["ar", "mirror", "interactive"],
+          "details": {
+            "fullDescription": "An interactive mirror that augments reflections with digital effects and virtual objects using real-time face tracking.",
+            "technologies": ["OpenCV", "Face Tracking", "Unity", "Kinect"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "collective-drawing",
+          "title": "Collective Drawing Machine",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "multi-user collaborative drawing installation",
+          "tags": ["collaborative", "drawing", "installation"],
+          "details": {
+            "fullDescription": "An installation where multiple participants contribute to a shared drawing projected on a large surface in real-time.",
+            "technologies": ["WebSockets", "Projection", "Touch Sensors"],
+            "year": "2024"
+          }
+        }
+      ]
     },
     "architecture": {
       "title": "architecture",
-      "projects": []
+      "projects": [
+        {
+          "id": "parametric-pavilion",
+          "title": "Parametric Pavilion",
+          "thumbnail": "assets/images/flow_jockey.png",
+          "description": "computational design for outdoor structure",
+          "tags": ["parametric", "grasshopper", "pavilion"],
+          "details": {
+            "fullDescription": "A parametrically designed pavilion structure using Grasshopper, optimized for structural performance and aesthetic appeal.",
+            "technologies": ["Rhino", "Grasshopper", "Karamba3D"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "adaptive-facade",
+          "title": "Adaptive Facade System",
+          "thumbnail": "assets/images/drawing_app.png",
+          "description": "responsive building skin prototype",
+          "tags": ["facade", "responsive", "architecture"],
+          "details": {
+            "fullDescription": "A prototype for an adaptive building facade that responds to environmental conditions like sunlight and temperature.",
+            "technologies": ["Grasshopper", "Arduino", "Sensors", "Servos"],
+            "year": "2024"
+          }
+        },
+        {
+          "id": "urban-intervention",
+          "title": "Urban Intervention",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "temporary public space installation",
+          "tags": ["urban design", "public space", "installation"],
+          "details": {
+            "fullDescription": "A temporary installation designed to transform underutilized urban spaces into interactive community gathering areas.",
+            "technologies": ["Fabrication", "Modular Design", "Community Engagement"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "tiny-house",
+          "title": "Modular Tiny House",
+          "thumbnail": "assets/images/flow_jockey.png",
+          "description": "sustainable compact living design",
+          "tags": ["sustainable", "tiny house", "modular"],
+          "details": {
+            "fullDescription": "A modular tiny house design focused on sustainability, efficient space usage, and off-grid capabilities.",
+            "technologies": ["Revit", "Sustainable Design", "Prefabrication"],
+            "year": "2024"
+          }
+        },
+        {
+          "id": "community-center",
+          "title": "Community Center Design",
+          "thumbnail": "assets/images/drawing_app.png",
+          "description": "mixed-use community space",
+          "tags": ["community", "mixed-use", "design"],
+          "details": {
+            "fullDescription": "A mixed-use community center designed to serve diverse programming needs while promoting social interaction and accessibility.",
+            "technologies": ["AutoCAD", "SketchUp", "Community Design"],
+            "year": "2023"
+          }
+        },
+        {
+          "id": "furniture-design",
+          "title": "Parametric Furniture Series",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "computationally designed seating",
+          "tags": ["furniture", "parametric", "fabrication"],
+          "details": {
+            "fullDescription": "A series of parametrically designed furniture pieces that explore organic forms and structural optimization.",
+            "technologies": ["Grasshopper", "CNC", "Digital Fabrication"],
+            "year": "2024"
+          }
+        }
+      ]
     }
   }
 }
