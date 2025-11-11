@@ -1,6 +1,9 @@
 let projectsData = null;
 let pageFlip = null;
 let currentCategory = null;
+let prevPageHandler = null;
+let nextPageHandler = null;
+let isMobileView = false;
 
 async function loadProjects() {
     try {
@@ -46,14 +49,22 @@ function loadCategory(categoryKey) {
     
     if (pageFlip) {
         pageFlip.destroy();
+        pageFlip = null;
     }
     
-    createFlipbook(category.projects);
+    checkMobileView();
+    
+    if (isMobileView) {
+        createMobileView(category.projects);
+    } else {
+        createFlipbook(category.projects);
+    }
 }
 
 function createFlipbook(projects) {
     const flipbookContainer = document.getElementById('flipbook');
     flipbookContainer.innerHTML = '';
+    flipbookContainer.removeAttribute('style');
     
     const coverPage = createCoverPage();
     flipbookContainer.appendChild(coverPage);
@@ -134,11 +145,60 @@ function createProjectPage(project) {
     return page;
 }
 
+function checkMobileView() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const smallScreen = window.innerWidth < 768;
+    isMobileView = reducedMotion || smallScreen;
+}
+
+function createMobileView(projects) {
+    const flipbookContainer = document.getElementById('flipbook');
+    flipbookContainer.innerHTML = '';
+    flipbookContainer.style.display = 'flex';
+    flipbookContainer.style.flexDirection = 'column';
+    flipbookContainer.style.gap = '20px';
+    flipbookContainer.style.padding = '20px';
+    flipbookContainer.style.maxWidth = '600px';
+    flipbookContainer.style.margin = '0 auto';
+    
+    projects.forEach(project => {
+        const card = createMobileProjectCard(project);
+        flipbookContainer.appendChild(card);
+    });
+    
+    document.querySelector('.book-controls').style.display = 'none';
+}
+
+function createMobileProjectCard(project) {
+    const card = document.createElement('div');
+    card.className = 'scrapbook-item';
+    card.style.transform = 'none';
+    
+    card.innerHTML = `
+        <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="project-tags">
+            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+        </div>
+    `;
+    
+    card.addEventListener('click', () => {
+        window.dispatchEvent(new Event('beforeModalOpen'));
+        openProjectModal(project);
+    });
+    
+    return card;
+}
+
 function initializePageFlip() {
     const flipbookContainer = document.getElementById('flipbook');
     const pages = flipbookContainer.querySelectorAll('.page');
     
     if (pages.length === 0) return;
+    
+    flipbookContainer.style.display = '';
+    document.querySelector('.book-controls').style.display = 'flex';
     
     const containerWidth = document.getElementById('book-wrapper').offsetWidth;
     const containerHeight = document.getElementById('book-wrapper').offsetHeight;
@@ -177,13 +237,25 @@ function initializePageFlip() {
         updatePageInfo();
     });
     
-    document.getElementById('prev-page').addEventListener('click', () => {
-        pageFlip.flipPrev();
-    });
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
     
-    document.getElementById('next-page').addEventListener('click', () => {
-        pageFlip.flipNext();
-    });
+    if (prevPageHandler) {
+        prevBtn.removeEventListener('click', prevPageHandler);
+    }
+    if (nextPageHandler) {
+        nextBtn.removeEventListener('click', nextPageHandler);
+    }
+    
+    prevPageHandler = () => {
+        if (pageFlip) pageFlip.flipPrev();
+    };
+    nextPageHandler = () => {
+        if (pageFlip) pageFlip.flipNext();
+    };
+    
+    prevBtn.addEventListener('click', prevPageHandler);
+    nextBtn.addEventListener('click', nextPageHandler);
 }
 
 function updatePageInfo() {
@@ -264,10 +336,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        if (pageFlip && currentCategory) {
-            const category = projectsData.categories[currentCategory];
-            createFlipbook(category.projects);
-        }
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (currentCategory) {
+                const wasPageFlip = pageFlip !== null;
+                checkMobileView();
+                
+                if (wasPageFlip !== !isMobileView) {
+                    loadCategory(currentCategory);
+                } else if (pageFlip) {
+                    const category = projectsData.categories[currentCategory];
+                    createFlipbook(category.projects);
+                }
+            }
+        }, 300);
     });
 });

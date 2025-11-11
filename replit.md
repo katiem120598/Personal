@@ -97,6 +97,20 @@ The site is configured for deployment using Replit's autoscale deployment target
   - Category headers for better organization
 - **To Add Projects**: Simply edit `assets/data/projects.json` - no code changes needed!
 
+### Portfolio 3.0 (portfolio3.html)
+- **Interactive flippable scrapbook** with realistic page-turning animations (Issuu-style)
+- **Technology**: Uses PageFlip.js library for realistic 3D page flipping effects
+- **Data Source**: Same `assets/data/projects.json` as Portfolio 2.0
+- **Features**:
+  - Tab-based category navigation (creative dev, engineering, interactive, architecture)
+  - Realistic page-turning animations with touch/swipe support
+  - 2 projects per spread (left and right pages)
+  - Click projects to view modal popup with details
+  - Hardcover front and back for authentic book feel
+  - Navigation buttons (prev/next) and page counter
+  - Responsive design with fallbacks for mobile
+- **To Add Projects**: Simply edit `assets/data/projects.json` - changes appear across all portfolio versions!
+
 ## Technology Stack
 - HTML5
 - CSS3 (with custom animations and gradients)
