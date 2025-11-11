@@ -11,6 +11,18 @@
     justify-content: center;
     overflow-y: auto;
 }
+
+.sky-gradient-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #b5d1ff 0%, #87ceeb 50%, #b0e0e6 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
 .whitecontainer{
     flex:1;
     color: #ffffff;
@@ -492,7 +504,8 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 80px 20px 60px 20px;
+    padding: 80px 20px 100px 20px;
+    width: 100%;
 }
 
 .roles-title {
@@ -504,19 +517,17 @@ html, body {
     z-index: 10;
 }
 
-.roles-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    max-width: 1000px;
+.roles-cloud-container {
+    position: relative;
     width: 100%;
-    padding: 20px;
+    max-width: 1200px;
+    min-height: 600px;
+    margin: 0 auto;
 }
 
 @media (max-width: 768px) {
-    .roles-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .roles-cloud-container {
+        min-height: 1000px;
     }
     
     .roles-title {
@@ -526,9 +537,9 @@ html, body {
 }
 
 .role-tile {
-    position: relative;
-    width: 100%;
-    min-height: 200px;
+    position: absolute;
+    width: 300px;
+    height: 180px;
     background-image: url('../images/cloud.png');
     background-size: contain;
     background-position: center;
@@ -542,8 +553,52 @@ html, body {
 }
 
 .role-tile:hover {
-    transform: scale(1.05) rotate(2deg);
+    transform: scale(1.08) rotate(3deg);
     filter: brightness(1.1);
+}
+
+.role-1 {
+    top: 20px;
+    left: 10%;
+}
+
+.role-2 {
+    top: 80px;
+    right: 15%;
+}
+
+.role-3 {
+    top: 220px;
+    left: 15%;
+}
+
+.role-4 {
+    top: 280px;
+    right: 8%;
+}
+
+.role-5 {
+    top: 420px;
+    left: 40%;
+}
+
+@media (max-width: 768px) {
+    .role-tile {
+        width: 250px;
+        height: 150px;
+        position: relative;
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+        margin: 20px auto;
+    }
+    
+    .role-1, .role-2, .role-3, .role-4, .role-5 {
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
 }
 
 .role-content {
