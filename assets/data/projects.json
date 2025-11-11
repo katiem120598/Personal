@@ -1,0 +1,60 @@
+{
+  "categories": {
+    "creative_dev": {
+      "title": "creative development",
+      "projects": [
+        {
+          "id": "flowjockey",
+          "title": "FlowJockey",
+          "thumbnail": "assets/images/flow_jockey.png",
+          "description": "interactive music visualization PWA",
+          "tags": ["web", "audio", "pwa"],
+          "details": {
+            "fullDescription": "A progressive web app that creates real-time audio visualizations using p5.js and Web Audio API. Features custom shader effects and responsive design.",
+            "technologies": ["TypeScript", "Lit", "p5.js", "Vite", "Workbox"],
+            "link": "flowjockey.html",
+            "year": "2024"
+          }
+        },
+        {
+          "id": "drawing-app",
+          "title": "Drawing App",
+          "thumbnail": "assets/images/drawing_app.png",
+          "description": "collaborative canvas application",
+          "tags": ["web", "canvas", "creative"],
+          "details": {
+            "fullDescription": "A real-time collaborative drawing application with custom brush tools and color palettes.",
+            "technologies": ["JavaScript", "Canvas API", "WebSockets"],
+            "link": "drawingapp copy.html",
+            "year": "2024"
+          }
+        }
+      ]
+    },
+    "engineering": {
+      "title": "engineering projects",
+      "projects": [
+        {
+          "id": "kinetic-sculpture",
+          "title": "Kinetic Sculpture",
+          "thumbnail": "assets/images/kinetic_assembly.JPG",
+          "description": "arduino-controlled kinetic art piece",
+          "tags": ["arduino", "fabrication", "physical computing"],
+          "details": {
+            "fullDescription": "A kinetic sculpture controlled by Arduino with servo motors and custom 3D printed parts.",
+            "technologies": ["Arduino", "C++", "3D Printing", "Laser Cutting"],
+            "year": "2024"
+          }
+        }
+      ]
+    },
+    "interactive": {
+      "title": "interactive installations",
+      "projects": []
+    },
+    "architecture": {
+      "title": "architecture",
+      "projects": []
+    }
+  }
+}
