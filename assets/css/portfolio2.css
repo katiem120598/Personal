@@ -37,6 +37,15 @@
     padding: 20px;
 }
 
+.category-header {
+    grid-column: 1 / -1;
+    font-family: 'girlypop', sans-serif;
+    font-size: 2rem;
+    color: #000;
+    margin: 20px 0 10px 0;
+    text-align: left;
+}
+
 @media (max-width: 768px) {
     .scrapbook-grid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

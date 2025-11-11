@@ -63,8 +63,19 @@ The site is configured for deployment using Replit's autoscale deployment target
 - Updated .gitignore to exclude node_modules and build artifacts
 - Configured deployment settings for production
 - Installed flowjockey dependencies
+- Redesigned homepage with "plus lowkey also..." section featuring 5 cloud role tiles
+- Fixed gradient styling (45deg top, 135deg bottom for mirror effect)
+- **Created Portfolio 2.0** - new modular, data-driven portfolio system with:
+  - JSON-based project data for easy editing (`assets/data/projects.json`)
+  - Responsive CSS Grid layout with scrapbook aesthetic
+  - Modal/dialog system for project details (mobile & desktop friendly)
+  - Lazy loading images for better performance
+  - Category headers for better organization
+  - Accessible focus management for keyboard/screen reader users
 
 ## Portfolio Sections
+
+### Original Portfolio (proceduraldesign.html)
 - **Procedural Design**: Computational design projects
 - **Web Apps**: Interactive web applications
 - **Personal Favorites**: Curated selection of favorite projects
@@ -72,6 +83,19 @@ The site is configured for deployment using Replit's autoscale deployment target
 - **Architecture**: Architectural design projects
 - **Interactive Exhibits**: Installation and exhibit work
 - **PS70**: Digital fabrication course documentation (weeks 1-10 + final)
+
+### Portfolio 2.0 (portfolio2.html)
+- **New modular portfolio system** designed for easy editing and maintenance
+- **Data Structure**: Projects organized in `assets/data/projects.json` by category
+  - Each project has: id, title, thumbnail, description, tags, and detailed info
+  - Categories: creative_dev, engineering, interactive, architecture
+- **Features**:
+  - Responsive CSS Grid layout (mobile-first design)
+  - Click to open detailed modal with full project info
+  - Lazy-loaded images for performance
+  - Scrapbook aesthetic with slight card rotations
+  - Category headers for better organization
+- **To Add Projects**: Simply edit `assets/data/projects.json` - no code changes needed!
 
 ## Technology Stack
 - HTML5

@@ -17,10 +17,17 @@ function renderProjects() {
     grid.innerHTML = '';
 
     Object.entries(projectsData.categories).forEach(([categoryKey, category]) => {
-        category.projects.forEach((project, index) => {
-            const card = createProjectCard(project, index);
-            grid.appendChild(card);
-        });
+        if (category.projects.length > 0) {
+            const categoryHeader = document.createElement('h2');
+            categoryHeader.className = 'category-header';
+            categoryHeader.textContent = category.title;
+            grid.appendChild(categoryHeader);
+            
+            category.projects.forEach((project, index) => {
+                const card = createProjectCard(project, index);
+                grid.appendChild(card);
+            });
+        }
     });
 }
 
@@ -40,7 +47,10 @@ function createProjectCard(project, index) {
         </div>
     `;
     
-    card.addEventListener('click', () => openProjectModal(project));
+    card.addEventListener('click', () => {
+        window.dispatchEvent(new Event('beforeModalOpen'));
+        openProjectModal(project);
+    });
     
     return card;
 }
@@ -71,6 +81,11 @@ function openProjectModal(project) {
     `;
     
     modal.showModal();
+    
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+        closeBtn.focus();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -78,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const modal = document.getElementById('project-modal');
     const closeBtn = document.querySelector('.modal-close');
+    let lastFocusedElement = null;
     
     closeBtn.addEventListener('click', () => {
         modal.close();
@@ -87,6 +103,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) {
             modal.close();
         }
+    });
+    
+    modal.addEventListener('close', () => {
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    });
+    
+    window.addEventListener('beforeModalOpen', () => {
+        lastFocusedElement = document.activeElement;
     });
     
     document.addEventListener('keydown', (e) => {
