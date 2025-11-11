@@ -69,20 +69,11 @@ function createFlipbook(projects) {
     const coverPage = createCoverPage();
     flipbookContainer.appendChild(coverPage);
     
-    for (let i = 0; i < projects.length; i += 2) {
-        const leftProject = projects[i];
-        const rightProject = projects[i + 1];
-        
-        const leftPage = createProjectPage(leftProject);
-        flipbookContainer.appendChild(leftPage);
-        
-        if (rightProject) {
-            const rightPage = createProjectPage(rightProject);
-            flipbookContainer.appendChild(rightPage);
-        } else {
-            const emptyPage = createEmptyPage();
-            flipbookContainer.appendChild(emptyPage);
-        }
+    const projectsPerPage = 4;
+    for (let i = 0; i < projects.length; i += projectsPerPage) {
+        const pageProjects = projects.slice(i, i + projectsPerPage);
+        const page = createMultiProjectPage(pageProjects);
+        flipbookContainer.appendChild(page);
     }
     
     const backCover = createBackCoverPage();
@@ -119,29 +110,41 @@ function createEmptyPage() {
     return page;
 }
 
-function createProjectPage(project) {
+function createMultiProjectPage(projects) {
     const page = document.createElement('div');
     page.className = 'page';
     
-    page.innerHTML = `
-        <div class="page-content">
-            <div class="scrapbook-item" data-project='${JSON.stringify(project).replace(/'/g, "&apos;")}'>
-                <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-                </div>
-            </div>
-        </div>
-    `;
+    const pageContent = document.createElement('div');
+    pageContent.className = 'page-content';
     
-    const scrapbookItem = page.querySelector('.scrapbook-item');
-    scrapbookItem.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openProjectModal(project);
+    projects.forEach((project, index) => {
+        const item = document.createElement('div');
+        item.className = 'scrapbook-item';
+        
+        item.innerHTML = `
+            <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <div class="project-tags">
+                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+            </div>
+        `;
+        
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openProjectModal(project);
+        });
+        
+        pageContent.appendChild(item);
     });
     
+    while (pageContent.children.length < 4) {
+        const emptyItem = document.createElement('div');
+        emptyItem.style.visibility = 'hidden';
+        pageContent.appendChild(emptyItem);
+    }
+    
+    page.appendChild(pageContent);
     return page;
 }
 
