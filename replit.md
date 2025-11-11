@@ -100,16 +100,21 @@ The site is configured for deployment using Replit's autoscale deployment target
 ### Portfolio 3.0 (portfolio3.html)
 - **Interactive flippable scrapbook** with realistic page-turning animations (Issuu-style)
 - **Technology**: Uses PageFlip.js library for realistic 3D page flipping effects
-- **Data Source**: Same `assets/data/projects.json` as Portfolio 2.0
+- **Data Source**: Same `assets/data/projects.json` as Portfolio 2.0 (6 sample projects per category)
 - **Features**:
   - **Physical tab dividers** on the right edge of the book for category navigation
+    - Paper texture backgrounds (cream/beige gradients) for authentic scrapbook look
+    - Washi tape overlays on tabs for cute decoration
+    - Stitching pattern on binding edge for physical attachment feel
+    - Tabs attached flush to book spine (no separation)
   - Realistic page-turning animations with touch/swipe support
   - **4 projects per page** in cute 2x2 scrapbook grid layout
   - **Scrapbook decorations**: dashed borders, washi tape effects, sparkles, slight rotations
   - Click projects to view modal popup with details
   - Hardcover front and back for authentic book feel
   - Navigation buttons (prev/next) and page counter
-  - Responsive design with fallbacks for mobile
+  - Responsive design with fallbacks for mobile (tabs move to horizontal layout)
+- **Sample Data**: Populated with 6 projects per category to showcase full scrapbook spreads
 - **To Add Projects**: Simply edit `assets/data/projects.json` - changes appear across all portfolio versions!
 
 ## Technology Stack
