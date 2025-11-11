@@ -102,9 +102,10 @@ The site is configured for deployment using Replit's autoscale deployment target
 - **Technology**: Uses PageFlip.js library for realistic 3D page flipping effects
 - **Data Source**: Same `assets/data/projects.json` as Portfolio 2.0
 - **Features**:
-  - Tab-based category navigation (creative dev, engineering, interactive, architecture)
+  - **Physical tab dividers** on the right edge of the book for category navigation
   - Realistic page-turning animations with touch/swipe support
-  - 2 projects per spread (left and right pages)
+  - **4 projects per page** in cute 2x2 scrapbook grid layout
+  - **Scrapbook decorations**: dashed borders, washi tape effects, sparkles, slight rotations
   - Click projects to view modal popup with details
   - Hardcover front and back for authentic book feel
   - Navigation buttons (prev/next) and page counter
