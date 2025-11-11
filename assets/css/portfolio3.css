@@ -32,7 +32,7 @@
 
 .tabs-container {
     position: absolute;
-    right: 0;
+    right: -2px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 500;
@@ -41,75 +41,44 @@
 .category-tabs {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
 }
 
 .tab-button {
-    background: linear-gradient(135deg, #fff9f0 0%, #fef5e7 50%, #fff9f0 100%);
-    border: 2px solid #e8d5c4;
-    border-right: none;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    padding: 25px 12px;
+    background: linear-gradient(to right, #ffeef5, #ffe6f0);
+    border: 2px solid #ffa7e9;
+    border-right: 3px solid #ff8fd9;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 20px 10px;
     font-family: Work Sans, sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.15),
-                inset 1px 1px 0 rgba(255, 255, 255, 0.6);
-    color: #8b7355;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    color: #d946a6;
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    min-height: 90px;
+    min-height: 80px;
     position: relative;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
-}
-
-.tab-button::before {
-    content: '';
-    position: absolute;
-    right: -8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 35px;
-    height: 18px;
-    background: linear-gradient(135deg, rgba(255, 167, 233, 0.7), rgba(255, 167, 233, 0.4));
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transform: translateY(-50%) rotate(-8deg);
-    z-index: 10;
-}
-
-.tab-button::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 3px,
-        rgba(139, 115, 85, 0.2) 3px,
-        rgba(139, 115, 85, 0.2) 6px
-    );
 }
 
 .tab-button:hover {
-    transform: translateX(-3px);
-    box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.2),
-                inset 1px 1px 0 rgba(255, 255, 255, 0.7);
+    background: linear-gradient(to right, #ffe0ed, #ffd4e8);
+    transform: translateX(-2px);
+    box-shadow: -3px 0 8px rgba(0, 0, 0, 0.15);
 }
 
 .tab-button.active {
-    background: linear-gradient(135deg, #ffe8f5 0%, #ffd9ed 50%, #ffe8f5 100%);
-    border-color: #ffb3d9;
-    color: #d946a6;
-    transform: translateX(-8px);
-    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.25),
-                inset 1px 1px 0 rgba(255, 255, 255, 0.8);
+    background: linear-gradient(to right, #ffa7e9, #ff8fd9);
+    color: white;
+    border-color: #d946a6;
+    border-right-color: #d946a6;
+    transform: translateX(-5px);
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .book-container {

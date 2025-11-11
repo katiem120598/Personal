@@ -11,7 +11,7 @@ async function loadProjects() {
         projectsData = await response.json();
         initializeTabs();
         const firstCategory = Object.keys(projectsData.categories)[0];
-        loadCategory(firstCategory);
+        setTimeout(() => loadCategory(firstCategory), 100);
     } catch (error) {
         console.error('Error loading projects:', error);
     }
@@ -63,6 +63,10 @@ function loadCategory(categoryKey) {
 
 function createFlipbook(projects) {
     const flipbookContainer = document.getElementById('flipbook');
+    if (!flipbookContainer) {
+        console.error('Flipbook container not found!');
+        return;
+    }
     flipbookContainer.innerHTML = '';
     flipbookContainer.removeAttribute('style');
     
@@ -156,6 +160,10 @@ function checkMobileView() {
 
 function createMobileView(projects) {
     const flipbookContainer = document.getElementById('flipbook');
+    if (!flipbookContainer) {
+        console.error('Flipbook container not found!');
+        return;
+    }
     flipbookContainer.innerHTML = '';
     flipbookContainer.style.display = 'flex';
     flipbookContainer.style.flexDirection = 'column';
