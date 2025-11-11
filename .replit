@@ -32,3 +32,11 @@ waitForPort = 5000
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 32779
+externalPort = 3000
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["python3", "-m", "http.server", "5000", "--bind", "0.0.0.0"]

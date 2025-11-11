@@ -1,3 +1,6 @@
+node_modules/
+.cache/
+*.log
 
 assets.zip
 assets/images/final.mp4
@@ -7,3 +10,10 @@ theremin_update.zip
 WebSocket/
 api_key.txt
 *.mp4
+
+flowjockey/dist/
+flowjockey/node_modules/
+
+.DS_Store
+.env
+.env.local
