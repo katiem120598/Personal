@@ -2,6 +2,8 @@ let projectsData = null;
 let pageFlip = null;
 let isMobileView = false;
 
+let lastIsMobileView = null;
+
 async function loadProjects() {
     try {
         const response = await fetch('assets/data/projects.json');
@@ -12,13 +14,21 @@ async function loadProjects() {
             allProjects.push(...category.projects);
         });
         
-        setTimeout(() => loadBook(allProjects), 100);
+        setTimeout(() => {
+            loadBook(allProjects);
+            lastIsMobileView = isMobileView;
+        }, 100);
     } catch (error) {
         console.error('Error loading projects:', error);
     }
 }
 
 function loadBook(projects) {
+    if (pageFlip) {
+        pageFlip.destroy();
+        pageFlip = null;
+    }
+    
     checkMobileView();
     
     if (isMobileView) {
@@ -178,14 +188,6 @@ function initializePageFlip() {
     updatePageInfo();
     
     pageFlip.on('flip', updatePageInfo);
-    
-    document.getElementById('prev-page').addEventListener('click', () => {
-        if (pageFlip) pageFlip.flipPrev();
-    });
-    
-    document.getElementById('next-page').addEventListener('click', () => {
-        if (pageFlip) pageFlip.flipNext();
-    });
 }
 
 function updatePageInfo() {
@@ -236,20 +238,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' && modal.open) modal.close();
     });
     
+    document.getElementById('prev-page').addEventListener('click', () => {
+        if (pageFlip) pageFlip.flipPrev();
+    });
+    
+    document.getElementById('next-page').addEventListener('click', () => {
+        if (pageFlip) pageFlip.flipNext();
+    });
+    
     let resizeTimeout;
+    
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
+            if (!projectsData) return;
+            
             const allProjects = [];
             Object.values(projectsData.categories).forEach(category => {
                 allProjects.push(...category.projects);
             });
             
-            const wasPageFlip = pageFlip !== null;
+            const previousMobileView = lastIsMobileView;
             checkMobileView();
             
-            if (wasPageFlip !== !isMobileView) {
+            if (previousMobileView !== isMobileView) {
                 loadBook(allProjects);
+                lastIsMobileView = isMobileView;
             }
         }, 300);
     });

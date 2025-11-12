@@ -56,7 +56,7 @@ The site is configured for deployment using Replit's autoscale deployment target
 - Some video files (*.mp4) are excluded from the repository via .gitignore
 - DrawingApp folder is gitignored and some pages may reference it
 
-## Recent Changes (Nov 11, 2025)
+## Recent Changes (Nov 12, 2025)
 - Imported from GitHub repository
 - Configured for Replit environment
 - Set up workflow for development server on port 5000
@@ -72,6 +72,13 @@ The site is configured for deployment using Replit's autoscale deployment target
   - Lazy loading images for better performance
   - Category headers for better organization
   - Accessible focus management for keyboard/screen reader users
+- **Updated Portfolio 3.0** (Nov 12, 2025):
+  - Removed tab navigation system for simpler, cleaner interface
+  - Changed from 4 projects per page to 3 projects per page
+  - Now displays all projects from all categories in a single continuous book
+  - Updated CSS layout from 2x2 grid to vertical stack for better readability
+  - Fixed all handleMenu onclick errors across 18 HTML files (ps70 pages, personal_favs, web_apps, etc.)
+  - All pages now load without JavaScript errors
 
 ## Portfolio Sections
 
@@ -100,21 +107,17 @@ The site is configured for deployment using Replit's autoscale deployment target
 ### Portfolio 3.0 (portfolio3.html)
 - **Interactive flippable scrapbook** with realistic page-turning animations (Issuu-style)
 - **Technology**: Uses PageFlip.js library for realistic 3D page flipping effects
-- **Data Source**: Same `assets/data/projects.json` as Portfolio 2.0 (6 sample projects per category)
+- **Data Source**: Same `assets/data/projects.json` as Portfolio 2.0 (all projects from all categories)
 - **Features**:
-  - **Tab dividers** on the right edge of the book for category navigation
-    - Pink gradient tabs that stick out from book edge
-    - Vertical text, clean rounded design
-    - Active tab highlights in darker pink
-    - Tabs positioned flush with book (integrated look)
   - Realistic page-turning animations with touch/swipe support
-  - **4 projects per page** in cute 2x2 scrapbook grid layout
+  - **3 projects per page** in vertical scrapbook layout
   - **Scrapbook decorations**: dashed borders, washi tape effects, sparkles, slight rotations
   - Click projects to view modal popup with details
   - Hardcover front and back for authentic book feel
   - Navigation buttons (prev/next) and page counter
-  - Responsive design with fallbacks for mobile (tabs move to horizontal layout)
-- **Sample Data**: Populated with 6 projects per category to showcase full scrapbook spreads
+  - Responsive design with fallbacks for mobile (switches to scrollable card layout)
+  - **No tabs** - displays all projects from all categories in one continuous flipbook
+- **Sample Data**: Populated with 6 projects per category (24 total projects)
 - **To Add Projects**: Simply edit `assets/data/projects.json` - changes appear across all portfolio versions!
 
 ## Technology Stack
