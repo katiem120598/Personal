@@ -1,8 +1,6 @@
 let projectsData = null;
 let pageFlip = null;
 let currentCategory = null;
-let prevPageHandler = null;
-let nextPageHandler = null;
 let isMobileView = false;
 
 async function loadProjects() {
@@ -25,7 +23,6 @@ function initializeTabs() {
         const button = document.createElement('button');
         button.className = 'tab-button';
         button.textContent = category.title;
-        button.dataset.category = categoryKey;
         
         button.addEventListener('click', () => {
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
@@ -40,9 +37,7 @@ function initializeTabs() {
 }
 
 function loadCategory(categoryKey) {
-    if (currentCategory === categoryKey && pageFlip) {
-        return;
-    }
+    if (currentCategory === categoryKey && pageFlip) return;
     
     currentCategory = categoryKey;
     const category = projectsData.categories[categoryKey];
@@ -63,25 +58,20 @@ function loadCategory(categoryKey) {
 
 function createFlipbook(projects) {
     const flipbookContainer = document.getElementById('flipbook');
-    if (!flipbookContainer) {
-        console.error('Flipbook container not found!');
-        return;
-    }
+    if (!flipbookContainer) return;
+    
     flipbookContainer.innerHTML = '';
     flipbookContainer.removeAttribute('style');
     
-    const coverPage = createCoverPage();
-    flipbookContainer.appendChild(coverPage);
+    flipbookContainer.appendChild(createCoverPage());
     
     const projectsPerPage = 4;
     for (let i = 0; i < projects.length; i += projectsPerPage) {
         const pageProjects = projects.slice(i, i + projectsPerPage);
-        const page = createMultiProjectPage(pageProjects);
-        flipbookContainer.appendChild(page);
+        flipbookContainer.appendChild(createProjectPage(pageProjects));
     }
     
-    const backCover = createBackCoverPage();
-    flipbookContainer.appendChild(backCover);
+    flipbookContainer.appendChild(createBackCoverPage());
     
     initializePageFlip();
 }
@@ -94,9 +84,7 @@ function createCoverPage() {
             <h1 style="font-family: 'girlypop', sans-serif; font-size: 3rem; margin: 20px 0;">
                 ${projectsData.categories[currentCategory].title}
             </h1>
-            <p style="font-family: Work Sans, sans-serif; font-size: 1.2rem;">
-                my scrapbook ✨
-            </p>
+            <p style="font-family: Work Sans, sans-serif; font-size: 1.2rem;">my scrapbook ✨</p>
         </div>
     `;
     return page;
@@ -108,20 +96,14 @@ function createBackCoverPage() {
     return page;
 }
 
-function createEmptyPage() {
-    const page = document.createElement('div');
-    page.className = 'page';
-    return page;
-}
-
-function createMultiProjectPage(projects) {
+function createProjectPage(projects) {
     const page = document.createElement('div');
     page.className = 'page';
     
     const pageContent = document.createElement('div');
     pageContent.className = 'page-content';
     
-    projects.forEach((project, index) => {
+    projects.forEach(project => {
         const item = document.createElement('div');
         item.className = 'scrapbook-item';
         
@@ -134,11 +116,7 @@ function createMultiProjectPage(projects) {
             </div>
         `;
         
-        item.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openProjectModal(project);
-        });
-        
+        item.addEventListener('click', () => openProjectModal(project));
         pageContent.appendChild(item);
     });
     
@@ -160,10 +138,8 @@ function checkMobileView() {
 
 function createMobileView(projects) {
     const flipbookContainer = document.getElementById('flipbook');
-    if (!flipbookContainer) {
-        console.error('Flipbook container not found!');
-        return;
-    }
+    if (!flipbookContainer) return;
+    
     flipbookContainer.innerHTML = '';
     flipbookContainer.style.display = 'flex';
     flipbookContainer.style.flexDirection = 'column';
@@ -173,33 +149,24 @@ function createMobileView(projects) {
     flipbookContainer.style.margin = '0 auto';
     
     projects.forEach(project => {
-        const card = createMobileProjectCard(project);
+        const card = document.createElement('div');
+        card.className = 'scrapbook-item';
+        card.style.transform = 'none';
+        
+        card.innerHTML = `
+            <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <div class="project-tags">
+                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+            </div>
+        `;
+        
+        card.addEventListener('click', () => openProjectModal(project));
         flipbookContainer.appendChild(card);
     });
     
     document.querySelector('.book-controls').style.display = 'none';
-}
-
-function createMobileProjectCard(project) {
-    const card = document.createElement('div');
-    card.className = 'scrapbook-item';
-    card.style.transform = 'none';
-    
-    card.innerHTML = `
-        <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-        <div class="project-tags">
-            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-        </div>
-    `;
-    
-    card.addEventListener('click', () => {
-        window.dispatchEvent(new Event('beforeModalOpen'));
-        openProjectModal(project);
-    });
-    
-    return card;
 }
 
 function initializePageFlip() {
@@ -213,7 +180,6 @@ function initializePageFlip() {
     
     const containerWidth = document.getElementById('book-wrapper').offsetWidth;
     const containerHeight = document.getElementById('book-wrapper').offsetHeight;
-    
     const pageWidth = Math.min(500, containerWidth * 0.4);
     const pageHeight = Math.min(700, containerHeight * 0.9);
     
@@ -233,40 +199,21 @@ function initializePageFlip() {
         usePortrait: false,
         startPage: 0,
         drawShadow: true,
-        flippingTime: 1000,
-        useMouseEvents: true,
-        autoSize: true,
-        showPageCorners: true,
-        disableFlipByClick: false
+        flippingTime: 1000
     });
     
     pageFlip.loadFromHTML(pages);
-    
     updatePageInfo();
     
-    pageFlip.on('flip', (e) => {
-        updatePageInfo();
+    pageFlip.on('flip', updatePageInfo);
+    
+    document.getElementById('prev-page').addEventListener('click', () => {
+        if (pageFlip) pageFlip.flipPrev();
     });
     
-    const prevBtn = document.getElementById('prev-page');
-    const nextBtn = document.getElementById('next-page');
-    
-    if (prevPageHandler) {
-        prevBtn.removeEventListener('click', prevPageHandler);
-    }
-    if (nextPageHandler) {
-        nextBtn.removeEventListener('click', nextPageHandler);
-    }
-    
-    prevPageHandler = () => {
-        if (pageFlip) pageFlip.flipPrev();
-    };
-    nextPageHandler = () => {
+    document.getElementById('next-page').addEventListener('click', () => {
         if (pageFlip) pageFlip.flipNext();
-    };
-    
-    prevBtn.addEventListener('click', prevPageHandler);
-    nextBtn.addEventListener('click', nextPageHandler);
+    });
 }
 
 function updatePageInfo() {
@@ -276,7 +223,6 @@ function updatePageInfo() {
     const totalPages = pageFlip.getPageCount();
     
     document.getElementById('page-info').textContent = `page ${currentPage + 1} of ${totalPages}`;
-    
     document.getElementById('prev-page').disabled = currentPage === 0;
     document.getElementById('next-page').disabled = currentPage >= totalPages - 1;
 }
@@ -289,62 +235,33 @@ function openProjectModal(project) {
         <div class="modal-body">
             <h2>${project.title}</h2>
             <p>${project.details.fullDescription}</p>
-            
             ${project.thumbnail ? `<img src="${project.thumbnail}" alt="${project.title}">` : ''}
-            
             <div class="tech-list">
                 ${project.details.technologies ? 
-                    project.details.technologies.map(tech => 
-                        `<span class="tech-tag">${tech}</span>`
-                    ).join('') : ''}
+                    project.details.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('') : ''}
             </div>
-            
             ${project.details.year ? `<p><strong>Year:</strong> ${project.details.year}</p>` : ''}
-            
-            ${project.details.link ? 
-                `<a href="${project.details.link}" target="_blank">view full project →</a>` : ''}
+            ${project.details.link ? `<a href="${project.details.link}" target="_blank">view full project →</a>` : ''}
         </div>
     `;
     
     modal.showModal();
-    
-    const closeBtn = modal.querySelector('.modal-close');
-    if (closeBtn) {
-        closeBtn.focus();
-    }
+    modal.querySelector('.modal-close').focus();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     loadProjects();
     
     const modal = document.getElementById('project-modal');
-    const closeBtn = document.querySelector('.modal-close');
-    let lastFocusedElement = null;
     
-    closeBtn.addEventListener('click', () => {
-        modal.close();
-    });
+    document.querySelector('.modal-close').addEventListener('click', () => modal.close());
     
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.close();
-        }
-    });
-    
-    modal.addEventListener('close', () => {
-        if (lastFocusedElement) {
-            lastFocusedElement.focus();
-        }
-    });
-    
-    window.addEventListener('beforeModalOpen', () => {
-        lastFocusedElement = document.activeElement;
+        if (e.target === modal) modal.close();
     });
     
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.open) {
-            modal.close();
-        }
+        if (e.key === 'Escape' && modal.open) modal.close();
     });
     
     let resizeTimeout;
@@ -357,9 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (wasPageFlip !== !isMobileView) {
                     loadCategory(currentCategory);
-                } else if (pageFlip) {
-                    const category = projectsData.categories[currentCategory];
-                    createFlipbook(category.projects);
                 }
             }
         }, 300);
