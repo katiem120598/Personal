@@ -1,58 +1,30 @@
 let projectsData = null;
 let pageFlip = null;
-let currentCategory = null;
 let isMobileView = false;
 
 async function loadProjects() {
     try {
         const response = await fetch('assets/data/projects.json');
         projectsData = await response.json();
-        initializeTabs();
-        const firstCategory = Object.keys(projectsData.categories)[0];
-        setTimeout(() => loadCategory(firstCategory), 100);
+        
+        const allProjects = [];
+        Object.values(projectsData.categories).forEach(category => {
+            allProjects.push(...category.projects);
+        });
+        
+        setTimeout(() => loadBook(allProjects), 100);
     } catch (error) {
         console.error('Error loading projects:', error);
     }
 }
 
-function initializeTabs() {
-    const tabsContainer = document.getElementById('category-tabs');
-    tabsContainer.innerHTML = '';
-    
-    Object.entries(projectsData.categories).forEach(([categoryKey, category]) => {
-        const button = document.createElement('button');
-        button.className = 'tab-button';
-        button.textContent = category.title;
-        
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            loadCategory(categoryKey);
-        });
-        
-        tabsContainer.appendChild(button);
-    });
-    
-    document.querySelector('.tab-button').classList.add('active');
-}
-
-function loadCategory(categoryKey) {
-    if (currentCategory === categoryKey && pageFlip) return;
-    
-    currentCategory = categoryKey;
-    const category = projectsData.categories[categoryKey];
-    
-    if (pageFlip) {
-        pageFlip.destroy();
-        pageFlip = null;
-    }
-    
+function loadBook(projects) {
     checkMobileView();
     
     if (isMobileView) {
-        createMobileView(category.projects);
+        createMobileView(projects);
     } else {
-        createFlipbook(category.projects);
+        createFlipbook(projects);
     }
 }
 
@@ -65,7 +37,7 @@ function createFlipbook(projects) {
     
     flipbookContainer.appendChild(createCoverPage());
     
-    const projectsPerPage = 4;
+    const projectsPerPage = 3;
     for (let i = 0; i < projects.length; i += projectsPerPage) {
         const pageProjects = projects.slice(i, i + projectsPerPage);
         flipbookContainer.appendChild(createProjectPage(pageProjects));
@@ -82,9 +54,9 @@ function createCoverPage() {
     page.innerHTML = `
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
             <h1 style="font-family: 'girlypop', sans-serif; font-size: 3rem; margin: 20px 0;">
-                ${projectsData.categories[currentCategory].title}
+                my portfolio
             </h1>
-            <p style="font-family: Work Sans, sans-serif; font-size: 1.2rem;">my scrapbook ✨</p>
+            <p style="font-family: Work Sans, sans-serif; font-size: 1.2rem;">scrapbook ✨</p>
         </div>
     `;
     return page;
@@ -120,7 +92,7 @@ function createProjectPage(projects) {
         pageContent.appendChild(item);
     });
     
-    while (pageContent.children.length < 4) {
+    while (pageContent.children.length < 3) {
         const emptyItem = document.createElement('div');
         emptyItem.style.visibility = 'hidden';
         pageContent.appendChild(emptyItem);
@@ -268,13 +240,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            if (currentCategory) {
-                const wasPageFlip = pageFlip !== null;
-                checkMobileView();
-                
-                if (wasPageFlip !== !isMobileView) {
-                    loadCategory(currentCategory);
-                }
+            const allProjects = [];
+            Object.values(projectsData.categories).forEach(category => {
+                allProjects.push(...category.projects);
+            });
+            
+            const wasPageFlip = pageFlip !== null;
+            checkMobileView();
+            
+            if (wasPageFlip !== !isMobileView) {
+                loadBook(allProjects);
             }
         }, 300);
     });
